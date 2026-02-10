@@ -144,6 +144,14 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.write("")
 st.write("")
 
+
+
+
+
+
+
+
+
 # ------------------ WEEKEND PLAN (components.html so it never turns into code) ------------------
 components.html(
     """
@@ -181,11 +189,11 @@ components.html(
     <!-- Desktop curve -->
     <svg class="curve curve-desktop" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
       <path d="M 330 145
-               C 720 120, 825 255, 610 325
-               C 410 390, 350 475, 465 540
-               C 545 610, 505 600, 510 565
-               C 512 555, 525 552, 545 558"
-            fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
+         C 720 120, 825 255, 610 325
+         C 410 390, 350 475, 465 540
+         C 515 600, 505 600, 510 565"
+      fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
+
     </svg>
 
     <!-- Mobile curve -->
@@ -340,6 +348,10 @@ components.html(
     height=740,
     scrolling=False,
 )
+
+
+
+
 
 
 
