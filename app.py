@@ -184,7 +184,7 @@ components.html(
 
     <!-- labels ON TOP of the curve -->
     <div class="between b1">kleine Überraschung 🎁</div>
-    <div class="between b2">Zeit für uns 😉</div>
+    <div class="between b2">Desssert 😉</div>
 
     <!-- ONE curve (works for desktop + mobile via CSS transforms) -->
     <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
@@ -289,9 +289,11 @@ components.html(
     white-space: nowrap;
   }
 
-  /* Desktop: pill positions (nice + readable over curve) */
-  .b1{ left: 520px; top: 132px; }
-  .b2{ left: 430px; top: 360px; }
+ /* Desktop: pill positions (adjusted) */
+.b1{ left: 505px; top: 132px; }   /* 🎁 a bit more left */
+.b2{ left: 410px; top: 340px; }   /* Dessert up + left, closer on the line */
+
+
 
   /* curve */
   .curve{
