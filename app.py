@@ -368,7 +368,7 @@ mobile_css = """
 }
 
 /* “kleine Überraschung” between Fri & Sat */
-.b1{ left: 58%; top: 135px; transform: translateX(-50%); }
+.b1{ left: 58%; top: 165px; transform: translateX(-50%); }
 
 /* “Desssert” between Sat & Sun (night) */
 .b2{ left: 52%; top: 365px; transform: translateX(-50%); }
