@@ -305,7 +305,7 @@ components.html(
 
   /* ✅ Desktop: both pills moved left onto the curve */
   .b1{ left: 455px; top: 112px; }  /* between Fri & Sat, clearly on the line */
-  .b2{ left: 375px; top: 345px; }  /* between Sat & Sun, clearly on the line */
+  .b2{ left: 375px; top: 305px; }  /* between Sat & Sun, clearly on the line */
 
   .curve{
     position: absolute;
