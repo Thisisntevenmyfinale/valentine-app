@@ -330,7 +330,7 @@ with col1:
         st.session_state.celebrated = False
         st.rerun()
 with col2:
-    if st.button("No (No Option)", use_container_width=True, key="no_btn"):
+    if st.button("No Option", use_container_width=True, key="no_btn"):
         st.session_state.answer = "NO"
         st.session_state.celebrated = False
         st.rerun()
