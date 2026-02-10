@@ -373,11 +373,10 @@ with col2:
         st.rerun()
 
 # ------------------ BIG HEART CELEBRATION (large hearts + message) ------------------
-def big_hearts_overlay(message=""):
+def big_hearts_overlay(message=None):
     hearts_html = []
-    # more hearts + mix sizes (some huge)
     for i in range(1, 120):
-        left = (i * 7) % 100  # deterministic spread
+        left = (i * 7) % 100
         delay = (i % 18) * 0.08
         dur = 3.2 + (i % 8) * 0.22
 
@@ -393,6 +392,14 @@ def big_hearts_overlay(message=""):
         hearts_html.append(
             f"<span class='h' style='left:{left}vw; animation-delay:{delay}s; animation-duration:{dur}s; font-size:{size}px;'>❤️</span>"
         )
+
+    love_text_html = ""
+    if message and str(message).strip():
+        love_text_html = f"""
+<div id="love-text">
+  <div class="t">{message}</div>
+</div>
+"""
 
     st.markdown(
         f"""
@@ -449,12 +456,6 @@ def big_hearts_overlay(message=""):
   line-height: 1.05;
 }}
 
-#love-text .s {{
-  margin-top: 8px;
-  font-size: 16px;
-  color: rgba(123,15,20,0.70);
-}}
-
 @keyframes textIn {{
   0% {{ opacity: 0; transform: translate(-50%, -48%) scale(0.98); }}
   18% {{ opacity: 1; transform: translate(-50%, -50%) scale(1.0); }}
@@ -467,17 +468,12 @@ def big_hearts_overlay(message=""):
   {''.join(hearts_html)}
 </div>
 
-<div id="love-text">
-  <div class="t">{message}</div>
-  <div class="s"></div>
-</div>
+{love_text_html}
 
 <script>
-  // set random drift safely (local DOM)
   document.querySelectorAll('#hearts-overlay .h').forEach((el) => {{
     el.style.setProperty('--rand', Math.random().toFixed(2));
   }});
-  // cleanup
   setTimeout(() => {{
     const o = document.getElementById('hearts-overlay'); if(o) o.remove();
     const t = document.getElementById('love-text'); if(t) t.remove();
@@ -486,6 +482,7 @@ def big_hearts_overlay(message=""):
         """,
         unsafe_allow_html=True,
     )
+
 
 # ------------------ RESULTS ------------------
 if st.session_state.answer == "YES":
