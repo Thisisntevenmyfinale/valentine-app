@@ -158,7 +158,7 @@ components.html(
 <div class="plan-card">
   <div class="plan-head">
     <div class="plan-title">V-Day Plan</div>
-    <div class="plan-sub"></div>
+    <div class="plan-sub">(scroll weiter… ich hab mir Gedanken gemacht 😉)</div>
   </div>
 
   <div class="plan">
@@ -184,17 +184,16 @@ components.html(
 
     <!-- labels ON TOP of the curve -->
     <div class="between b1">kleine Überraschung 🎁</div>
-    <div class="between b2">Desssert 😉</div>
+    <div class="between b2">Zeit für uns 😉</div>
 
     <!-- ONE curve (works for desktop + mobile via CSS transforms) -->
     <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
       <path class="curve-path"
-      d="M 330 145
-         C 720 120, 825 255, 610 325
-         C 410 390, 350 475, 465 540
-         C 585 610, 650 595, 650 535"
-      fill="none"/>
-
+            d="M 330 145
+               C 720 120, 825 255, 610 325
+               C 410 390, 350 475, 465 540
+               C 585 610, 740 605, 800 560"
+            fill="none"/>
     </svg>
   </div>
 </div>
@@ -290,11 +289,9 @@ components.html(
     white-space: nowrap;
   }
 
- /* Desktop: pill positions (adjusted) */
-.b1{ left: 505px; top: 132px; }   /* 🎁 a bit more left */
-.b2{ left: 320px; top: 340px; }   /* Dessert up + left, closer on the line */
-
-
+  /* Desktop: pill positions (nice + readable over curve) */
+  .b1{ left: 520px; top: 132px; }
+  .b2{ left: 430px; top: 360px; }
 
   /* curve */
   .curve{
@@ -354,6 +351,7 @@ components.html(
     height=740,
     scrolling=False,
 )
+
 
 
 
