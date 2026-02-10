@@ -184,7 +184,7 @@ components.html(
 
     <!-- labels ON TOP of the curve (DESKTOP positions below in CSS) -->
     <div class="between b1">kleine Überraschung 🎁</div>
-    <div class="between b2">Zeit für uns 😉</div>
+    <div class="between b2">Dessert 😉</div>
 
     <!-- Desktop curve -->
 <svg class="curve curve-desktop" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
