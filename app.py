@@ -334,7 +334,7 @@ mobile_css = """
 
 /* 4) make the plan area taller so nothing is cramped */
 .plan{
-  height: 560px;          /* was 460px -> taller */
+  height: 620px;          /* was 460px -> taller */
   border-radius: 16px;
 }
 
