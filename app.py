@@ -189,11 +189,12 @@ components.html(
     <!-- ONE curve (works for desktop + mobile via CSS transforms) -->
     <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
       <path class="curve-path"
-            d="M 330 145
-               C 720 120, 825 255, 610 325
-               C 410 390, 350 475, 465 540
-               C 585 610, 740 605, 800 560"
-            fill="none"/>
+      d="M 330 145
+         C 720 120, 825 255, 610 325
+         C 410 390, 350 475, 465 540
+         C 585 610, 650 595, 650 535"
+      fill="none"/>
+
     </svg>
   </div>
 </div>
