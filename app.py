@@ -317,7 +317,6 @@ st.markdown(
   </div>
 
   <div class="small-note" style="margin-top:14px; color:rgba(123,15,20,0.60); font-size:14px;">
-    (There is only one correct answer 💘)
   </div>
 </div>
 """,
