@@ -129,12 +129,11 @@ st.markdown(
 
   <p>
     Seit es dich gibt, fühlt sich mein Alltag wärmer an. Ich bin dankbar für jeden Tag mit dir –
-    für unsere Höhen, für unsere Tiefen, und für alles dazwischen.
-    Und selbst an den schwierigen Tagen: <i>mit dir</i> ist es besser als ohne dich.
+    für unsere Höhen, für unsere Tiefen, und für alles dazwischen. Du machst mein Leben so unfassbar schön und bedeutungsvoll
   </p>
 
   <p style="margin-bottom:0;">
-    Ich liebe unser Wir.
+    Ich liebe dich und uns über alles :)
   </p>
 </div>
 """,
