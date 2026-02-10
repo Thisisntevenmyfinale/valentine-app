@@ -492,7 +492,7 @@ if st.session_state.answer == "YES":
     st.success("JAAAA!!! 💘💘💘")
 
     if not st.session_state.celebrated:
-        big_hearts_overlay("Ich liebe dich über alles.")
+        big_hearts_overlay("Ich freue mich so sehr:)")
         st.session_state.celebrated = True
 
     st.markdown(
