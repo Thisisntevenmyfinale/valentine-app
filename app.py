@@ -190,9 +190,9 @@ components.html(
     <svg class="curve curve-desktop" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
       <path d="M 330 145
          C 720 120, 825 255, 610 325
-         C 410 390, 350 475, 465 540
-         C 520 610, 500 610, 485 575"
+         C 410 390, 360 455, 420 500"
       fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
+
 
 
 
