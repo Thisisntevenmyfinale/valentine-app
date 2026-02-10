@@ -488,58 +488,14 @@ def big_hearts_overlay(message=None):
         </div>
         """
 
-    # IMPORTANT: this must run ALWAYS
     st.markdown(
         f"""
         <style>
-        /* FULLSCREEN WHITE FLASH + BIG HEART */
-        #white-flash {{
-          position: fixed;
-          inset: 0;
-          z-index: 1000002;
-          background: rgba(255,255,255,0.98);
-          opacity: 0;
-          animation: flashInOut 5.8s ease forwards;
-          pointer-events: none;
-        }}
-
-        @keyframes flashInOut {{
-          0%   {{ opacity: 0; }}
-          8%   {{ opacity: 1; }}
-          85%  {{ opacity: 1; }}
-          100% {{ opacity: 0; }}
-        }}
-
-        #big-heart {{
-          position: fixed;
-          left: 50%;
-          top: 48%;
-          transform: translate(-50%, -50%) scale(0.85);
-          z-index: 1000003;
-          pointer-events: none;
-          opacity: 0;
-          animation: heartPop 5.8s ease forwards;
-          filter: drop-shadow(0 22px 50px rgba(0,0,0,0.18));
-        }}
-
-        #big-heart .h {{
-          font-size: min(42vw, 260px);
-          line-height: 1;
-        }}
-
-        @keyframes heartPop {{
-          0%   {{ opacity: 0; transform: translate(-50%, -50%) scale(0.70); }}
-          10%  {{ opacity: 1; transform: translate(-50%, -50%) scale(1.02); }}
-          18%  {{ opacity: 1; transform: translate(-50%, -50%) scale(0.98); }}
-          85%  {{ opacity: 1; transform: translate(-50%, -50%) scale(1.00); }}
-          100% {{ opacity: 0; transform: translate(-50%, -50%) scale(1.00); }}
-        }}
-
-        /* HEART RAIN */
+        /* HEART RAIN (starts immediately) */
         #hearts-overlay {{
           position: fixed;
           inset: 0;
-          z-index: 1000001; /* behind white + big heart */
+          z-index: 1000001;
           pointer-events: none;
           overflow: hidden;
           background: rgba(255,255,255,0.0);
@@ -562,6 +518,52 @@ def big_hearts_overlay(message=None):
           100% {{ top: -25vh; transform: translateX(calc(-120px + 240px * var(--rand))) rotate(520deg) scale(1.02); opacity: 0; }}
         }}
 
+        /* WHITE FLASH (starts after hearts already appear) */
+        #white-flash {{
+          position: fixed;
+          inset: 0;
+          z-index: 1000002;
+          background: rgba(255,255,255,0.98);
+          opacity: 0;
+          pointer-events: none;
+          animation: flashInOut 5.0s ease forwards;
+          animation-delay: 0.9s; /* <-- delay so hearts are visible first */
+        }}
+
+        @keyframes flashInOut {{
+          0%   {{ opacity: 0; }}
+          8%   {{ opacity: 1; }}
+          85%  {{ opacity: 1; }}
+          100% {{ opacity: 0; }}
+        }}
+
+        /* BIG HEART (also delayed) */
+        #big-heart {{
+          position: fixed;
+          left: 50%;
+          top: 48%;
+          transform: translate(-50%, -50%) scale(0.85);
+          z-index: 1000003;
+          pointer-events: none;
+          opacity: 0;
+          filter: drop-shadow(0 22px 50px rgba(0,0,0,0.18));
+          animation: heartPop 5.0s ease forwards;
+          animation-delay: 0.9s; /* <-- same delay */
+        }}
+
+        #big-heart .h {{
+          font-size: min(42vw, 280px);
+          line-height: 1;
+        }}
+
+        @keyframes heartPop {{
+          0%   {{ opacity: 0; transform: translate(-50%, -50%) scale(0.70); }}
+          10%  {{ opacity: 1; transform: translate(-50%, -50%) scale(1.04); }}
+          18%  {{ opacity: 1; transform: translate(-50%, -50%) scale(0.98); }}
+          85%  {{ opacity: 1; transform: translate(-50%, -50%) scale(1.00); }}
+          100% {{ opacity: 0; transform: translate(-50%, -50%) scale(1.00); }}
+        }}
+
         /* OPTIONAL TEXT */
         #love-text {{
           position: fixed;
@@ -578,7 +580,7 @@ def big_hearts_overlay(message=None):
           box-shadow: 0 22px 55px rgba(0,0,0,0.18);
           opacity: 0;
           animation: textIn 5.0s ease forwards;
-          animation-delay: 0.9s;
+          animation-delay: 1.3s; /* a bit after the big heart */
         }}
 
         #love-text .t {{
@@ -597,26 +599,29 @@ def big_hearts_overlay(message=None):
         }}
         </style>
 
-        <div id="white-flash"></div>
-        <div id="big-heart"><div class="h">❤️</div></div>
-
+        <!-- order matters: hearts first, flash+big heart are delayed -->
         <div id="hearts-overlay">
           {''.join(hearts_html)}
         </div>
 
+        <div id="white-flash"></div>
+        <div id="big-heart"><div class="h">❤️</div></div>
+
         {love_text_html}
 
         <script>
+        // random drift per heart
         document.querySelectorAll('#hearts-overlay .h').forEach((el) => {{
           el.style.setProperty('--rand', Math.random().toFixed(2));
         }});
 
+        // cleanup after everything finished
         setTimeout(() => {{
           ['hearts-overlay','white-flash','big-heart','love-text'].forEach((id) => {{
             const el = document.getElementById(id);
             if(el) el.remove();
           }});
-        }}, 6200);
+        }}, 7200);
         </script>
         """,
         unsafe_allow_html=True,
