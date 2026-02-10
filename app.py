@@ -191,8 +191,9 @@ components.html(
       <path d="M 330 145
          C 720 120, 825 255, 610 325
          C 410 390, 350 475, 465 540
-         C 515 600, 505 600, 510 565"
+         C 520 610, 500 610, 485 575"
       fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
+
 
 
     </svg>
