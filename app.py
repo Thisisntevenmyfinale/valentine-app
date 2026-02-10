@@ -322,47 +322,99 @@ components.html(
   .curve-desktop{ display: block; }
   .curve-mobile{ display: none; }
 
+  
+  
+  
+  
+  
+  
+  
+  
   @media (max-width: 560px){
-  .plan-title{ font-size: 38px; }
-  .plan-sub{ font-size: 16px; }
 
-  /* more vertical space so nothing feels cramped */
-  .plan{ height: 720px; }
+  /* Headline oben nicht abgeschnitten */
+  .plan-title{
+    font-size: 34px;
+    line-height: 1.05;
+  }
+  .plan-sub{
+    font-size: 14px;
+    margin-top: 6px;
+  }
 
-  .day{ font-size: 34px; }
-  .title{ font-size: 20px; }
-  .desc{ font-size: 15px; }
+  /* Mobile Layout: sauber gestapelt */
+  .plan{
+    height: auto;
+    padding: 18px 16px 22px;
+  }
 
-  /* IMPORTANT: make the text readable on top of the curve */
+  /* Items werden normale Cards (nicht absolut) */
   .plan-item{
-    left: 18px;
-    right: 18px;
-    max-width: none;
-    padding: 14px 14px;
+    position: relative;
+    left: auto; right: auto; top: auto; bottom: auto;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 0 16px 0;
+    padding: 16px 16px;
     border-radius: 18px;
-    background: rgba(255,255,255,0.86);
-    border: 1px solid rgba(123,15,20,0.14);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-    backdrop-filter: blur(4px);
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(123,15,20,0.16);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.10);
   }
 
-  /* stacked positions */
-  .tl{ top: 26px; }
-  .mr{ top: 300px; text-align:left; }
-  .bl{ bottom: 26px; }
-
-  /* Pills: clearly between the sections */
-  .b1{ left: 18px; top: 220px; }
-  .b2{ left: 18px; top: 545px; }
-
-  /* curves: show only mobile + push it to the right */
-  .curve{ opacity: 0.90; }
-  .curve-desktop{ display:none; }
-  .curve-mobile{
-    display:block;
-    transform: translateX(120px);   /* key: moves the curve away from text */
+  /* Schrift deutlich kleiner & cleaner */
+  .day{
+    font-size: 32px;
+    line-height: 1.0;
   }
+  .title{
+    font-size: 18px;
+    margin-top: 6px;
+  }
+  .desc{
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  /* Desktop-Positionen deaktivieren */
+  .tl, .mr, .bl{ }
+
+  /* Pills: zwischen den Cards, mittig */
+  .between{
+    position: relative;
+    left: auto; top: auto;
+    display: inline-block;
+    margin: 6px auto 18px;
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+
+  /* Reihenfolge: FR -> Pill -> SA -> Pill -> SO */
+  .tl{ order: 1; }
+  .b1{ order: 2; }
+  .mr{ order: 3; }
+  .b2{ order: 4; }
+  .bl{ order: 5; }
+
+  /* Dafür muss .plan zum Flex-Container werden */
+  .plan{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .between{ align-self: center; }
+
+  /* Kurven auf Mobile aus (sonst sieht’s immer kacke aus) */
+  .curve-desktop{ display: none !important; }
+  .curve-mobile{ display: none !important; }
 }
+
+
+
+
+
+
+
 
 </style>
 """,
