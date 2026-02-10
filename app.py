@@ -183,7 +183,8 @@ components.html(
       <path d="M 330 145
                C 720 120, 825 255, 610 325
                C 410 390, 350 475, 465 540
-               C 585 610, 740 605, 800 560"
+               C 545 610, 505 600, 510 565
+               C 512 555, 525 552, 545 558"
             fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
     </svg>
 
@@ -270,7 +271,10 @@ components.html(
   }
 
   .tl{ left: 34px; top: 30px; }
-  .mr{ right: 34px; top: 235px; text-align: left; }
+
+  /* ✅ Saturday further right so it doesn't overlap the curve */
+  .mr{ right: 12px; top: 235px; text-align: left; }
+
   .bl{ left: 34px; bottom: 34px; }
 
   /* pills ON TOP of the curve (make them readable even when overlapping the line) */
@@ -291,9 +295,9 @@ components.html(
     backdrop-filter: blur(4px);
   }
 
-  /* ✅ Desktop: move BOTH pills left and place clearly “on the curve” */
-  .b1{ left: 510px; top: 118px; }  /* kleine Überraschung: further left, slightly higher */
-  .b2{ left: 455px; top: 330px; }  /* Zeit für uns: clearly between Sat & Sun */
+  /* ✅ Desktop: both pills moved left onto the curve */
+  .b1{ left: 455px; top: 112px; }  /* between Fri & Sat, clearly on the line */
+  .b2{ left: 375px; top: 345px; }  /* between Sat & Sun, clearly on the line */
 
   .curve{
     position: absolute;
@@ -323,7 +327,7 @@ components.html(
     .tl{ left: 22px; top: 28px; }
     .bl{ left: 22px; bottom: 34px; }
 
-    /* ✅ Mobile: keep them readable & positioned between the sections */
+    /* Mobile: keep them readable & positioned between the sections */
     .b1{ left: 22px; top: 190px; }
     .b2{ left: 22px; top: 415px; }
 
@@ -336,6 +340,7 @@ components.html(
     height=740,
     scrolling=False,
 )
+
 
 
 
