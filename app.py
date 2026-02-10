@@ -312,7 +312,7 @@ st.markdown(
     I’ve got a question...
   </div>
   <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; margin-top:12px;">
-    Pauli, can I claim you as my Valentine? 💘 
+    Pauli, can I claim you as my Valentine? :) 
   </div>
   <div class="small-note" style="margin-top:12px;">(Du musst dich entscheiden 😇)</div>
 </div>
