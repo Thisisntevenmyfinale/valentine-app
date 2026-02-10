@@ -185,13 +185,24 @@ components.html(
     <div class="between b1">kleine Überraschung 🎁</div>
     <div class="between b2">Zeit für uns 😉</div>
 
-    <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M 260 140
-               C 740 110, 790 260, 590 325
-               C 360 405, 330 470, 430 535
-               C 540 605, 710 600, 760 560"
-            fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
-    </svg>
+    <!-- Desktop curve -->
+<svg class="curve curve-desktop" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M 330 145
+           C 720 120, 825 255, 610 325
+           C 410 390, 350 475, 465 540
+           C 585 610, 740 605, 800 560"
+        fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
+</svg>
+
+<!-- Mobile curve -->
+<svg class="curve curve-mobile" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M 520 125
+           C 760 160, 770 265, 610 335
+           C 430 415, 430 500, 575 560
+           C 690 605, 770 590, 820 545"
+        fill="none" stroke="#7b0f14" stroke-width="18" stroke-linecap="round"/>
+</svg>
+
   </div>
 </div>
 
