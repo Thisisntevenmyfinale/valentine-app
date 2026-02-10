@@ -1,7 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# ------------------ PAGE CONFIG ------------------
 st.set_page_config(page_title="💘 Paulina & Jan Philipp", page_icon="💘", layout="centered")
 
 # ------------------ STATE ------------------
@@ -12,12 +11,27 @@ if "answer" not in st.session_state:
 if "celebrated" not in st.session_state:
     st.session_state.celebrated = False
 
-# ------------------ HEARTS FX ------------------
-def hearts_rain(amount=220, speed_ms=25):
-    """
-    Creates falling heart emojis over the whole page.
-    Implemented via an iframe script that writes into window.parent.document.
-    """
+# ------------------ QUERY PARAM OPEN (click wax seal) ------------------
+def _get_query_params():
+    # supports old + new Streamlit APIs
+    try:
+        return dict(st.query_params)
+    except Exception:
+        return st.experimental_get_query_params()
+
+def _clear_query_params():
+    try:
+        st.query_params.clear()
+    except Exception:
+        st.experimental_set_query_params()
+
+qp = _get_query_params()
+if not st.session_state.opened and ("open" in qp):
+    st.session_state.opened = True
+    _clear_query_params()
+
+# ------------------ HEARTS FX (fixed: no f-string/template conflicts) ------------------
+def hearts_rain(amount=260, speed_ms=18):
     components.html(
         f"""
         <script>
@@ -37,13 +51,18 @@ def hearts_rain(amount=220, speed_ms=25):
             heart.style.zIndex = '999999';
             heart.style.pointerEvents = 'none';
             heart.style.filter = 'drop-shadow(0 8px 12px rgba(0,0,0,0.18))';
-            heart.style.transition = `transform ${duration}ms linear, top ${duration}ms linear, opacity ${duration}ms linear`;
+
+            // IMPORTANT: no JS template strings here -> avoids Python f-string conflicts
+            heart.style.transition =
+              'transform ' + duration + 'ms linear, ' +
+              'top ' + duration + 'ms linear, ' +
+              'opacity ' + duration + 'ms linear';
 
             doc.body.appendChild(heart);
 
             setTimeout(() => {{
               heart.style.top = '115vh';
-              heart.style.transform = `translateX(${{(Math.random()*320-160)}}px) rotate(${{(Math.random()*720)}}deg)`;
+              heart.style.transform = 'translateX(' + (Math.random()*360-180) + 'px) rotate(' + (Math.random()*720) + 'deg)';
               heart.style.opacity = '0';
             }}, 30);
 
@@ -62,39 +81,27 @@ def hearts_rain(amount=220, speed_ms=25):
         width=0,
     )
 
-# ------------------ GLOBAL STYLES ------------------
+# ------------------ PAGE CSS ------------------
 st.markdown(
     """
 <style>
-/* Page layout */
-.block-container {padding-top: 2.0rem; padding-bottom: 3.0rem; max-width: 850px;}
+.block-container {padding-top: 2.0rem; padding-bottom: 3.0rem; max-width: 900px;}
 .center {text-align:center;}
-.big-title {font-size: clamp(34px, 6vw, 52px); font-weight: 900; text-align: center; margin: 0.2rem 0 0.2rem;}
+.big-title {font-size: clamp(34px, 6vw, 54px); font-weight: 900; text-align: center; margin: 0.2rem 0 0.2rem;}
 .sub {font-size: clamp(16px, 2.2vw, 20px); text-align: center; opacity: 0.92; margin: 0 0 1.2rem;}
-
-/* Buttons */
-div.stButton > button {
-  border-radius: 18px;
-  padding: 0.95rem 1rem;
-  font-weight: 800;
-  font-size: 1.05rem;
-}
-
-/* Card */
 .card {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.16);
   padding: 18px;
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: 0 14px 34px rgba(0,0,0,0.16);
 }
-
-/* Simple reveal */
 .fade-in { animation: fadeIn 650ms ease-in-out; }
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+@keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+
+/* Hide the ugly link underline for our wax seal link */
+a.seal-link { text-decoration: none !important; }
+a.seal-link:visited { color: inherit; }
 </style>
 """,
     unsafe_allow_html=True,
@@ -104,142 +111,150 @@ div.stButton > button {
 st.markdown('<div class="big-title">Paulina 💘 Jan Philipp</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub">I made a little surprise for you.</div>', unsafe_allow_html=True)
 
-# ------------------ ENVELOPE HTML (INLINE CSS!) ------------------
-def render_envelope():
-    # IMPORTANT: CSS is inside this HTML so it applies within the component iframe.
-    components.html(
+# ------------------ ENVELOPE (TikTok-style) ------------------
+def render_envelope_clickable():
+    st.markdown(
         """
-<div style="display:flex; justify-content:center; margin: 1.1rem 0 1.2rem;">
-  <div class="env">
-    <div class="paper"></div>
+<div class="center" style="display:flex; justify-content:center; margin: 0.8rem 0 0.9rem;">
+  <div class="env2">
+    <div class="letter2"></div>
 
-    <div class="corner corner-tl">P</div>
-    <div class="miniheart miniheart-tl">♥</div>
+    <!-- diagonals -->
+    <div class="diag2 left2"></div>
+    <div class="diag2 right2"></div>
 
-    <div class="diagonal left"></div>
-    <div class="diagonal right"></div>
+    <!-- top subtle fold -->
+    <div class="fold2"></div>
 
-    <div class="wax">
-      <span>P ♥ J</span>
-    </div>
+    <!-- corners -->
+    <div class="corner2 tl2">P</div>
+    <div class="mini2 tlh2">♥</div>
 
-    <div class="miniheart miniheart-br">♥</div>
-    <div class="corner corner-br">J</div>
+    <div class="mini2 brh2">♥</div>
+    <div class="corner2 br2">J</div>
+
+    <!-- clickable wax seal (opens via query param) -->
+    <a class="seal-link" href="?open=1">
+      <div class="wax2">
+        <span>P ♥ J</span>
+      </div>
+    </a>
   </div>
 </div>
 
+<div class="center" style="font-size:18px; margin-top: 0.3rem;">
+  Tap the wax seal to open 💌
+</div>
+
 <style>
-  .env{
-    width: min(540px, 92vw);
-    height: min(360px, 62vw);
-    background: #f7f1e6;
+  .env2{
+    width: min(620px, 92vw);
+    aspect-ratio: 4 / 2.65;
+    background: #f1e7d8;
     border-radius: 22px;
     position: relative;
     box-shadow: 0 18px 46px rgba(0,0,0,0.20);
     overflow:hidden;
     border: 10px solid #7b0f14;
   }
-  .env::before{
+  .env2::before{
     content:"";
     position:absolute;
     inset:0;
     background:
-      radial-gradient(circle at 30% 20%, rgba(123,15,20,0.09), transparent 46%),
-      radial-gradient(circle at 80% 72%, rgba(123,15,20,0.09), transparent 42%);
+      radial-gradient(circle at 30% 20%, rgba(123,15,20,0.10), transparent 46%),
+      radial-gradient(circle at 80% 72%, rgba(123,15,20,0.10), transparent 42%);
     pointer-events:none;
   }
-
-  /* inner paper hint */
-  .paper{
+  .letter2{
     position:absolute;
-    left: 7%;
-    right: 7%;
-    top: 9%;
-    bottom: 22%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.70));
+    left: 9%;
+    right: 9%;
+    top: 12%;
+    bottom: 18%;
+    background: #fbfbfb;
     border-radius: 18px;
-    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.04);
+    box-shadow: 0 18px 28px rgba(0,0,0,0.12);
   }
-
-  /* diagonals */
-  .diagonal{
+  .fold2{
     position:absolute;
-    width: 64%;
-    height: 62%;
-    top: 24%;
-    background: transparent;
-    border-top: 3px solid rgba(60,60,60,0.24);
+    left: 50%;
+    top: 30%;
+    width: 54%;
+    height: 2px;
+    background: rgba(0,0,0,0.15);
+    transform: translateX(-50%) rotate(0deg);
   }
-  .diagonal.left{ left:-12%; transform: rotate(20deg); }
-  .diagonal.right{ right:-12%; transform: rotate(-20deg); }
+  .diag2{
+    position:absolute;
+    width: 72%;
+    height: 70%;
+    top: 26%;
+    border-top: 3px solid rgba(0,0,0,0.18);
+  }
+  .diag2.left2{ left:-16%; transform: rotate(19deg); }
+  .diag2.right2{ right:-16%; transform: rotate(-19deg); }
 
-  /* wax seal */
-  .wax{
+  .wax2{
     position:absolute;
     left: 50%;
     top: 67%;
     transform: translate(-50%, -50%);
-    width: 96px;
-    height: 96px;
+    width: 98px;
+    height: 98px;
     border-radius: 999px;
-    background: radial-gradient(circle at 30% 25%, #b3121a, #7b0f14 68%);
-    box-shadow: 0 12px 22px rgba(0,0,0,0.26);
+    background: radial-gradient(circle at 30% 25%, #c01721, #7b0f14 68%);
+    box-shadow: 0 14px 26px rgba(0,0,0,0.28);
     display:flex;
     align-items:center;
     justify-content:center;
+    cursor: pointer;
+    transition: transform 140ms ease, filter 140ms ease;
   }
-  .wax span{
+  .wax2:hover{ filter: brightness(1.03); transform: translate(-50%, -50%) scale(1.03); }
+  .wax2:active{ transform: translate(-50%, -50%) scale(0.98); }
+
+  .wax2 span{
     font-weight: 900;
-    font-size: 24px;
-    color: rgba(255,255,255,0.90);
+    font-size: 22px;
+    color: rgba(255,255,255,0.92);
     letter-spacing: 0.6px;
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   }
 
-  /* corners */
-  .corner{
+  .corner2{
     position:absolute;
     font-weight: 900;
     font-size: 34px;
     color: #7b0f14;
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   }
-  .corner-tl{ left: 22px; top: 14px; }
-  .corner-br{ right: 22px; bottom: 12px; }
+  .tl2{ left: 22px; top: 14px; }
+  .br2{ right: 22px; bottom: 12px; }
 
-  .miniheart{
+  .mini2{
     position:absolute;
-    font-size: 22px;
+    font-size: 20px;
     color: #7b0f14;
-    opacity: 0.92;
+    opacity: 0.9;
   }
-  .miniheart-tl{ left: 28px; top: 54px; }
-  .miniheart-br{ right: 30px; bottom: 54px; }
+  .tlh2{ left: 30px; top: 54px; }
+  .brh2{ right: 30px; bottom: 54px; }
 </style>
         """,
-        height=420,
-        scrolling=False,
+        unsafe_allow_html=True,
     )
 
 # ------------------ FLOW ------------------
 if not st.session_state.opened:
-    render_envelope()
-
-    st.markdown("<div class='center' style='font-size:18px; margin-top: 0.2rem;'>Tap to open the letter 💌</div>", unsafe_allow_html=True)
-
-    if st.button("Open the letter 💌", use_container_width=True, key="open_letter_btn"):
-        st.session_state.opened = True
-        st.session_state.answer = None
-        st.session_state.celebrated = False
-        hearts_rain(amount=120, speed_ms=35)  # small tease
-        st.rerun()
+    render_envelope_clickable()
 
 else:
     st.markdown("<div class='fade-in'>", unsafe_allow_html=True)
 
     st.image("us.jpg", use_container_width=True)
-
     st.write("")
+
     st.markdown('<div class="card center fade-in">', unsafe_allow_html=True)
     st.markdown("### Paulina… will you be my Valentine on **February 14**? 💘")
     st.write("")
@@ -262,9 +277,8 @@ else:
     if st.session_state.answer == "YES":
         st.success("YAAAY!!! 💘💘💘")
 
-        # Trigger celebration once (avoid raining again on every rerun)
         if not st.session_state.celebrated:
-            hearts_rain(amount=320, speed_ms=18)  # LOTS of hearts, no balloons
+            hearts_rain(amount=360, speed_ms=16)  # BIG celebration
             st.session_state.celebrated = True
 
         st.markdown(
@@ -282,7 +296,7 @@ else:
         st.markdown(
             """
             <div class='center fade-in' style='font-size:18px; line-height:1.45;'>
-              Maybe click <b>Yes</b> just to double-check 😉
+              Maybe tap <b>Yes</b> just to double-check 😉
             </div>
             """,
             unsafe_allow_html=True,
