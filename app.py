@@ -371,7 +371,7 @@ mobile_css = """
 .b1{ left: 65%; top: 190px; transform: translateX(-50%); }
 
 /* “Desssert” between Sat & Sun (night) */
-.b2{ left: 40%; top: 400px; transform: translateX(-50%); }
+.b2{ left: 40%; top: 420px; transform: translateX(-50%); }
 
 /* Curve: keep it similar but ensure it stays inside + not too thick */
 .curve{
