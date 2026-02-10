@@ -159,7 +159,7 @@ st.write("")
 
 
 
-# ------------------ WEEKEND PLAN (separate desktop + mobile CSS) ------------------
+# ------------------ WEEKEND PLAN (base + separate desktop/mobile overrides) ------------------
 
 plan_html = """
 <div class="plan-card">
@@ -199,8 +199,8 @@ plan_html = """
 </div>
 """
 
-desktop_css = """
-/* -------- DESKTOP (>= 561px) -------- */
+# 1) BASE = wird IMMER geladen (wichtig für iOS)
+base_css = """
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800;900&display=swap');
 *{ font-family: "Playfair Display", Georgia, serif !important; }
 :root{ --red:#7b0f14; }
@@ -264,7 +264,6 @@ desktop_css = """
 .mr{ right: 34px; top: 235px; text-align: left; }
 .bl{ left: 34px; bottom: 34px; }
 
-/* pills */
 .between{
   position: absolute;
   font-weight: 900;
@@ -280,11 +279,9 @@ desktop_css = """
   white-space: nowrap;
 }
 
-/* Desktop pill positions */
 .b1{ left: 520px; top: 132px; }
 .b2{ left: 430px; top: 360px; }
 
-/* curve */
 .curve{
   position: absolute;
   inset: 0;
@@ -293,8 +290,6 @@ desktop_css = """
   opacity: 0.95;
   pointer-events: none;
   z-index: 1;
-  transform: none;              /* explicit reset for desktop */
-  transform-origin: center;
 }
 
 .curve-path{
@@ -304,9 +299,13 @@ desktop_css = """
 }
 """
 
+# 2) DESKTOP overrides (optional – aktuell leer, damit es 1:1 wie vorher bleibt)
+desktop_css = """
+/* Desktop-only overrides go here if you want (>= 561px) */
+"""
+
+# 3) MOBILE overrides (das ist exakt dein früherer @media block)
 mobile_css = """
-/* -------- MOBILE (<= 560px) -------- */
-/* Only overrides what differs from desktop */
 .plan-card{ padding: 18px; }
 .plan-title{ font-size: 34px; }
 .plan-sub{ font-size: 15px; }
@@ -339,6 +338,8 @@ mobile_css = """
 
 plan_css = f"""
 <style>
+{base_css}
+
 /* Desktop bucket */
 @media (min-width: 561px) {{
 {desktop_css}
@@ -356,6 +357,7 @@ components.html(
     height=740,
     scrolling=False,
 )
+
 
 
 
