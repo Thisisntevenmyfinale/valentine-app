@@ -150,7 +150,7 @@ components.html(
 <div class="plan-card">
   <div class="plan-head">
     <div class="plan-title">V-Day Plan</div>
-    <div class="plan-sub"></div>
+    <div class="plan-sub">(scroll weiter… ich hab mir Gedanken gemacht 😉)</div>
   </div>
 
   <div class="plan">
@@ -174,6 +174,7 @@ components.html(
       <div class="desc">den ganzen Morgen 🧸</div>
     </div>
 
+    <!-- labels ON TOP of the curve -->
     <div class="between b1">kleine Überraschung 🎁</div>
     <div class="between b2">Zeit für uns 😉</div>
 
@@ -211,7 +212,7 @@ components.html(
   }
 
   .plan-head{
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     text-align: center;
   }
 
@@ -221,14 +222,12 @@ components.html(
     color: var(--red);
     letter-spacing: -0.03em;
     line-height: 1.0;
-    text-align: center;
   }
 
   .plan-sub{
     margin-top: 8px;
     font-size: 18px;
     color: rgba(123,15,20,0.70);
-    text-align: center;
   }
 
   .plan{
@@ -247,6 +246,7 @@ components.html(
     max-width: 340px;
     padding: 10px 12px;
     color: rgba(123,15,20,0.92);
+    z-index: 4;
   }
 
   .day{
@@ -273,6 +273,7 @@ components.html(
   .mr{ right: 34px; top: 235px; text-align: left; }
   .bl{ left: 34px; bottom: 34px; }
 
+  /* pills on top of the curve */
   .between{
     position: absolute;
     font-weight: 900;
@@ -283,10 +284,14 @@ components.html(
     border-radius: 999px;
     color: rgba(123,15,20,0.90);
     backdrop-filter: blur(3px);
+    z-index: 6;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    white-space: nowrap;
   }
 
-  .b1{ left: 430px; top: 145px; }
-  .b2{ left: 395px; top: 405px; }
+  /* Desktop positions (moved right + b2 higher) */
+  .b1{ left: 585px; top: 135px; }
+  .b2{ left: 515px; top: 350px; }
 
   .curve{
     position: absolute;
@@ -295,6 +300,7 @@ components.html(
     height: 100%;
     opacity: 0.95;
     pointer-events: none;
+    z-index: 1;
   }
 
   /* Desktop shows only desktop curve */
@@ -303,19 +309,21 @@ components.html(
 
   @media (max-width: 560px){
     .plan-title{ font-size: 38px; }
+    .plan-sub{ font-size: 16px; }
     .plan{ height: 610px; }
 
     .day{ font-size: 34px; }
     .title{ font-size: 20px; }
     .desc{ font-size: 15px; }
-
     .plan-item{ max-width: 300px; }
+
     .mr{ left: 22px; right: 22px; top: 280px; }
     .tl{ left: 22px; top: 28px; }
     .bl{ left: 22px; bottom: 34px; }
 
+    /* Mobile pills: still between Sat & Sun, but readable */
     .b1{ left: 22px; top: 190px; }
-    .b2{ left: 22px; top: 455px; }
+    .b2{ left: 22px; top: 420px; }
 
     /* Mobile shows only mobile curve */
     .curve-desktop{ display: none; }
@@ -326,6 +334,7 @@ components.html(
     height=740,
     scrolling=False,
 )
+
 
 
 st.write("")
@@ -460,7 +469,7 @@ def big_hearts_overlay(message="Ich liebe dich über alles."):
 
 <div id="love-text">
   <div class="t">{message}</div>
-  <div class="s">für immer du & ich 💘</div>
+  <div class="s"></div>
 </div>
 
 <script>
