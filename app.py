@@ -291,7 +291,7 @@ components.html(
 
  /* Desktop: pill positions (adjusted) */
 .b1{ left: 505px; top: 132px; }   /* 🎁 a bit more left */
-.b2{ left: 410px; top: 340px; }   /* Dessert up + left, closer on the line */
+.b2{ left: 320px; top: 340px; }   /* Dessert up + left, closer on the line */
 
 
 
