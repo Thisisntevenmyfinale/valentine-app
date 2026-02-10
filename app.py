@@ -149,7 +149,7 @@ components.html(
     """
 <div class="plan-card">
   <div class="plan-head">
-    <div class="plan-title">Unser Plan</div>
+    <div class="plan-title">V-Day Plan</div>
     <div class="plan-sub">(scroll weiter… ich hab mir Gedanken gemacht 😉)</div>
   </div>
 
@@ -211,19 +211,27 @@ components.html(
     box-shadow: 0 18px 42px rgba(0,0,0,0.12);
   }
 
-  .plan-head{ margin-bottom: 14px; }
-  .plan-title{
-    font-size: 44px;
-    font-weight: 900;
-    color: var(--red);
-    letter-spacing: -0.03em;
-    line-height: 1.0;
-  }
-  .plan-sub{
-    margin-top: 8px;
-    font-size: 18px;
-    color: rgba(123,15,20,0.70);
-  }
+  .plan-head{
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.plan-title{
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  text-align: center;
+}
+
+.plan-sub{
+  margin-top: 8px;
+  font-size: 18px;
+  color: rgba(123,15,20,0.70);
+  text-align: center;
+}
+
 
   .plan{
     position: relative;
