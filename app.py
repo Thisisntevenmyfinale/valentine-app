@@ -122,13 +122,7 @@ st.markdown(
   <div class="lead">Pauli mein Schatz, </div>
 
   <p>
-    Wie kann ein Mensch das Leben so sehr verändern – nicht laut, nicht auf einmal,
-    sondern in tausend kleinen Momenten: wenn du lachst, wenn du mich ansiehst,
-    wenn du einfach da bist.
-  </p>
-
-  <p>
-    Seit es dich gibt, fühlt sich mein Alltag wärmer an. Ich bin dankbar für jeden Tag mit dir –
+    Ich bin jeden Tag dankbar dich in meinem Leben zu haben –
     für unsere Höhen, für unsere Tiefen, und für alles dazwischen. Du machst mein Leben so unfassbar schön und bedeutungsvoll
   </p>
 
