@@ -630,7 +630,7 @@ def big_hearts_overlay(message=None):
 # ------------------ RESULTS ------------------
 if st.session_state.answer == "YES":
     if not st.session_state.celebrated:
-        big_hearts_overlay("Ich liebe dich ❤️")
+        big_hearts_overlay("Ich liebe dich")
         st.session_state.celebrated = True
 
     st.markdown(
