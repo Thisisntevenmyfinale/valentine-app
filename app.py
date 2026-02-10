@@ -499,8 +499,7 @@ if st.session_state.answer == "YES":
         """
 <div class="card fade-in center">
   <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; line-height:1.25;">
-    Ich liebe dich, Paulina. ❤️<br/>
-    Dein Jan Philipp 😘
+    Ich liebe dich Paulina ❤️<br/>
   </div>
 </div>
 """,
