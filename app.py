@@ -114,20 +114,7 @@ st.markdown(
         border-color: rgba(123,15,20,0.35) !important;
         transform: translateY(-1px);
     }
-    /* --- hide Streamlit top red bar / header --- */
-header[data-testid="stHeader"]{
-  display: none !important;
-}
-
-/* optional: remove extra top spacing that header used */
-div[data-testid="stAppViewContainer"]{
-  padding-top: 0 !important;
-}
-
-/* optional: hide Streamlit menu + footer completely */
-#MainMenu{ visibility: hidden; }
-footer{ visibility: hidden; }
-
+    
     </style>
     """,
     unsafe_allow_html=True,
