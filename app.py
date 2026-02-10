@@ -11,9 +11,8 @@ if "answer" not in st.session_state:
 if "celebrated" not in st.session_state:
     st.session_state.celebrated = False
 
-# ------------------ QUERY PARAM OPEN (click wax seal) ------------------
+# ------------------ QUERY PARAM OPEN ------------------
 def _get_query_params():
-    # supports old + new Streamlit APIs
     try:
         return dict(st.query_params)
     except Exception:
@@ -30,8 +29,8 @@ if not st.session_state.opened and ("open" in qp):
     st.session_state.opened = True
     _clear_query_params()
 
-# ------------------ HEARTS FX (fixed: no f-string/template conflicts) ------------------
-def hearts_rain(amount=260, speed_ms=18):
+# ------------------ HEARTS FX (fixed) ------------------
+def hearts_rain(amount=320, speed_ms=16):
     components.html(
         f"""
         <script>
@@ -51,8 +50,6 @@ def hearts_rain(amount=260, speed_ms=18):
             heart.style.zIndex = '999999';
             heart.style.pointerEvents = 'none';
             heart.style.filter = 'drop-shadow(0 8px 12px rgba(0,0,0,0.18))';
-
-            // IMPORTANT: no JS template strings here -> avoids Python f-string conflicts
             heart.style.transition =
               'transform ' + duration + 'ms linear, ' +
               'top ' + duration + 'ms linear, ' +
@@ -98,56 +95,61 @@ st.markdown(
 }
 .fade-in { animation: fadeIn 650ms ease-in-out; }
 @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
-
-/* Hide the ugly link underline for our wax seal link */
-a.seal-link { text-decoration: none !important; }
-a.seal-link:visited { color: inherit; }
 </style>
 """,
     unsafe_allow_html=True,
 )
 
-# ------------------ HEADER ------------------
+# ------------------ HEADER (DE) ------------------
 st.markdown('<div class="big-title">Paulina 💘 Jan Philipp</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub">I made a little surprise for you.</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub">Ich habe eine kleine Überraschung für dich.</div>', unsafe_allow_html=True)
 
-# ------------------ ENVELOPE (TikTok-style) ------------------
+# ------------------ ENVELOPE (components.html so nothing shows as code) ------------------
 def render_envelope_clickable():
-    st.markdown(
+    components.html(
         """
-<div class="center" style="display:flex; justify-content:center; margin: 0.8rem 0 0.9rem;">
-  <div class="env2">
-    <div class="letter2"></div>
+<div style="display:flex; justify-content:center; margin: 0.8rem 0 0.4rem;">
+  <div class="env">
+    <div class="letter"></div>
 
-    <!-- diagonals -->
-    <div class="diag2 left2"></div>
-    <div class="diag2 right2"></div>
+    <div class="diag left"></div>
+    <div class="diag right"></div>
 
-    <!-- top subtle fold -->
-    <div class="fold2"></div>
+    <div class="fold"></div>
 
-    <!-- corners -->
-    <div class="corner2 tl2">P</div>
-    <div class="mini2 tlh2">♥</div>
+    <div class="corner tl">P</div>
+    <div class="mini tlh">♥</div>
 
-    <div class="mini2 brh2">♥</div>
-    <div class="corner2 br2">J</div>
+    <div class="mini brh">♥</div>
+    <div class="corner br">J</div>
 
-    <!-- clickable wax seal (opens via query param) -->
-    <a class="seal-link" href="?open=1">
-      <div class="wax2">
-        <span>P ♥ J</span>
-      </div>
-    </a>
+    <div class="wax" id="wax">
+      <span>P ♥ J</span>
+    </div>
   </div>
 </div>
 
-<div class="center" style="font-size:18px; margin-top: 0.3rem;">
-  Tap the wax seal to open 💌
+<div style="text-align:center; font-size:18px; margin-top: 0.3rem;">
+  Tippe auf das Wachssiegel, um den Brief zu öffnen 💌
 </div>
 
+<script>
+(function(){
+  const wax = document.getElementById("wax");
+  wax.addEventListener("click", function(){
+    // Change PARENT (Streamlit page) URL so Streamlit reruns with ?open=1
+    try {
+      window.parent.location.search = "open=1";
+    } catch(e) {
+      // fallback: open in same tab
+      window.location.search = "open=1";
+    }
+  });
+})();
+</script>
+
 <style>
-  .env2{
+  .env{
     width: min(620px, 92vw);
     aspect-ratio: 4 / 2.65;
     background: #f1e7d8;
@@ -157,7 +159,7 @@ def render_envelope_clickable():
     overflow:hidden;
     border: 10px solid #7b0f14;
   }
-  .env2::before{
+  .env::before{
     content:"";
     position:absolute;
     inset:0;
@@ -166,7 +168,7 @@ def render_envelope_clickable():
       radial-gradient(circle at 80% 72%, rgba(123,15,20,0.10), transparent 42%);
     pointer-events:none;
   }
-  .letter2{
+  .letter{
     position:absolute;
     left: 9%;
     right: 9%;
@@ -176,32 +178,32 @@ def render_envelope_clickable():
     border-radius: 18px;
     box-shadow: 0 18px 28px rgba(0,0,0,0.12);
   }
-  .fold2{
+  .fold{
     position:absolute;
     left: 50%;
     top: 30%;
     width: 54%;
     height: 2px;
     background: rgba(0,0,0,0.15);
-    transform: translateX(-50%) rotate(0deg);
+    transform: translateX(-50%);
   }
-  .diag2{
+  .diag{
     position:absolute;
     width: 72%;
     height: 70%;
     top: 26%;
     border-top: 3px solid rgba(0,0,0,0.18);
   }
-  .diag2.left2{ left:-16%; transform: rotate(19deg); }
-  .diag2.right2{ right:-16%; transform: rotate(-19deg); }
+  .diag.left{ left:-16%; transform: rotate(19deg); }
+  .diag.right{ right:-16%; transform: rotate(-19deg); }
 
-  .wax2{
+  .wax{
     position:absolute;
     left: 50%;
     top: 67%;
     transform: translate(-50%, -50%);
-    width: 98px;
-    height: 98px;
+    width: 102px;
+    height: 102px;
     border-radius: 999px;
     background: radial-gradient(circle at 30% 25%, #c01721, #7b0f14 68%);
     box-shadow: 0 14px 26px rgba(0,0,0,0.28);
@@ -210,11 +212,12 @@ def render_envelope_clickable():
     justify-content:center;
     cursor: pointer;
     transition: transform 140ms ease, filter 140ms ease;
+    user-select: none;
   }
-  .wax2:hover{ filter: brightness(1.03); transform: translate(-50%, -50%) scale(1.03); }
-  .wax2:active{ transform: translate(-50%, -50%) scale(0.98); }
+  .wax:hover{ filter: brightness(1.03); transform: translate(-50%, -50%) scale(1.03); }
+  .wax:active{ transform: translate(-50%, -50%) scale(0.98); }
 
-  .wax2 span{
+  .wax span{
     font-weight: 900;
     font-size: 22px;
     color: rgba(255,255,255,0.92);
@@ -222,27 +225,28 @@ def render_envelope_clickable():
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   }
 
-  .corner2{
+  .corner{
     position:absolute;
     font-weight: 900;
     font-size: 34px;
     color: #7b0f14;
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   }
-  .tl2{ left: 22px; top: 14px; }
-  .br2{ right: 22px; bottom: 12px; }
+  .tl{ left: 22px; top: 14px; }
+  .br{ right: 22px; bottom: 12px; }
 
-  .mini2{
+  .mini{
     position:absolute;
     font-size: 20px;
     color: #7b0f14;
     opacity: 0.9;
   }
-  .tlh2{ left: 30px; top: 54px; }
-  .brh2{ right: 30px; bottom: 54px; }
+  .tlh{ left: 30px; top: 54px; }
+  .brh{ right: 30px; bottom: 54px; }
 </style>
         """,
-        unsafe_allow_html=True,
+        height=520,
+        scrolling=False,
     )
 
 # ------------------ FLOW ------------------
@@ -256,17 +260,17 @@ else:
     st.write("")
 
     st.markdown('<div class="card center fade-in">', unsafe_allow_html=True)
-    st.markdown("### Paulina… will you be my Valentine on **February 14**? 💘")
+    st.markdown("### Paulina… willst du am **14. Februar** mein Valentine sein? 💘")
     st.write("")
 
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("Yes 💖", use_container_width=True, key="yes_btn"):
+        if st.button("Ja 💖", use_container_width=True, key="yes_btn"):
             st.session_state.answer = "YES"
             st.session_state.celebrated = False
             st.rerun()
     with col2:
-        if st.button("No 🙈", use_container_width=True, key="no_btn"):
+        if st.button("Nein 🙈", use_container_width=True, key="no_btn"):
             st.session_state.answer = "NO"
             st.session_state.celebrated = False
             st.rerun()
@@ -275,28 +279,28 @@ else:
     st.write("")
 
     if st.session_state.answer == "YES":
-        st.success("YAAAY!!! 💘💘💘")
+        st.success("JAAAA!!! 💘💘💘")
 
         if not st.session_state.celebrated:
-            hearts_rain(amount=360, speed_ms=16)  # BIG celebration
+            hearts_rain(amount=380, speed_ms=14)  # große Herz-Party (keine Ballons)
             st.session_state.celebrated = True
 
         st.markdown(
             """
             <div class='center fade-in' style='font-size:22px; font-weight:800; line-height:1.35;'>
-              I love you, Paulina. ❤️<br/>
-              Your Jan Philipp 😘
+              Ich liebe dich, Paulina. ❤️<br/>
+              Dein Jan Philipp 😘
             </div>
             """,
             unsafe_allow_html=True,
         )
 
     elif st.session_state.answer == "NO":
-        st.warning("Okay… but are you *sure*? 😄")
+        st.warning("Okaaay… aber bist du dir *wirklich* sicher? 😄")
         st.markdown(
             """
             <div class='center fade-in' style='font-size:18px; line-height:1.45;'>
-              Maybe tap <b>Yes</b> just to double-check 😉
+              Vielleicht klickst du <b>Ja</b> nur zur Sicherheit nochmal 😉
             </div>
             """,
             unsafe_allow_html=True,
