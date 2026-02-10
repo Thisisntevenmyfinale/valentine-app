@@ -312,7 +312,7 @@ st.markdown(
     Und jetzt…
   </div>
   <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; margin-top:12px;">
-    Paulina, willst du mein Valentine sein? 💘
+    Will you be my Valentine, Pauli? 💘 💘
   </div>
   <div class="small-note" style="margin-top:12px;">(Du musst dich entscheiden 😇)</div>
 </div>
