@@ -158,7 +158,7 @@ components.html(
 <div class="plan-card">
   <div class="plan-head">
     <div class="plan-title">V-Day Plan</div>
-    <div class="plan-sub">(scroll weiter… ich hab mir Gedanken gemacht 😉)</div>
+    <div class="plan-sub"></div>
   </div>
 
   <div class="plan">
