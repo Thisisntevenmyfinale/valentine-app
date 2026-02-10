@@ -579,16 +579,7 @@ def big_hearts_overlay(message=None):
 # ------------------ RESULTS ------------------
 if st.session_state.answer == "YES":
     if not st.session_state.celebrated:
-        big_hearts_overlay("Ich liebe dich")
+        big_hearts_overlay("Ich liebe dich Paulina")
         st.session_state.celebrated = True
 
-    st.markdown(
-        """
-        <div class="card fade-in center">
-          <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; line-height:1.25;">
-            Ich liebe dich Paulina ❤️<br/>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    
