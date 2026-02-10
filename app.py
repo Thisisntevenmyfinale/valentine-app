@@ -197,13 +197,14 @@ components.html(
 
 
     <!-- Mobile curve -->
-    <svg class="curve curve-mobile" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M 520 125
-               C 760 160, 770 265, 610 335
-               C 430 415, 430 500, 575 560
-               C 690 605, 770 590, 820 545"
-            fill="none" stroke="#7b0f14" stroke-width="18" stroke-linecap="round"/>
-    </svg>
+<svg class="curve curve-mobile" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M 640 90
+           C 860 150, 860 270, 650 335
+           C 470 395, 500 520, 670 585
+           C 790 635, 890 600, 930 545"
+        fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
+</svg>
+
   </div>
 </div>
 
@@ -322,27 +323,47 @@ components.html(
   .curve-mobile{ display: none; }
 
   @media (max-width: 560px){
-    .plan-title{ font-size: 38px; }
-    .plan-sub{ font-size: 16px; }
-    .plan{ height: 610px; }
+  .plan-title{ font-size: 38px; }
+  .plan-sub{ font-size: 16px; }
 
-    .day{ font-size: 34px; }
-    .title{ font-size: 20px; }
-    .desc{ font-size: 15px; }
-    .plan-item{ max-width: 300px; }
+  /* more vertical space so nothing feels cramped */
+  .plan{ height: 720px; }
 
-    .mr{ left: 22px; right: 22px; top: 280px; }
-    .tl{ left: 22px; top: 28px; }
-    .bl{ left: 22px; bottom: 34px; }
+  .day{ font-size: 34px; }
+  .title{ font-size: 20px; }
+  .desc{ font-size: 15px; }
 
-    /* Mobile: keep them readable & positioned between the sections */
-    .b1{ left: 22px; top: 190px; }
-    .b2{ left: 22px; top: 415px; }
-
-    /* Mobile shows only mobile curve */
-    .curve-desktop{ display: none; }
-    .curve-mobile{ display: block; }
+  /* IMPORTANT: make the text readable on top of the curve */
+  .plan-item{
+    left: 18px;
+    right: 18px;
+    max-width: none;
+    padding: 14px 14px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.86);
+    border: 1px solid rgba(123,15,20,0.14);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    backdrop-filter: blur(4px);
   }
+
+  /* stacked positions */
+  .tl{ top: 26px; }
+  .mr{ top: 300px; text-align:left; }
+  .bl{ bottom: 26px; }
+
+  /* Pills: clearly between the sections */
+  .b1{ left: 18px; top: 220px; }
+  .b2{ left: 18px; top: 545px; }
+
+  /* curves: show only mobile + push it to the right */
+  .curve{ opacity: 0.90; }
+  .curve-desktop{ display:none; }
+  .curve-mobile{
+    display:block;
+    transform: translateX(120px);   /* key: moves the curve away from text */
+  }
+}
+
 </style>
 """,
     height=740,
