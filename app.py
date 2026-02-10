@@ -301,8 +301,19 @@ base_css = """
 
 # 2) DESKTOP overrides (optional – aktuell leer, damit es 1:1 wie vorher bleibt)
 desktop_css = """
-/* Desktop-only overrides go here if you want (>= 561px) */
+/* Desktop-only overrides (>= 561px) */
+
+/* move "Desssert 😉" left + a bit up */
+.b2{
+  left: 330px;
+  top: 330px;
+}
+
+/* optional: keep pills above the curve */
+.between{ z-index: 10; }
 """
+
+
 
 # 3) MOBILE overrides (das ist exakt dein früherer @media block)
 mobile_css = """
