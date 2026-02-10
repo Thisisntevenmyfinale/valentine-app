@@ -9,58 +9,67 @@ if "answer" not in st.session_state:
 if "celebrated" not in st.session_state:
     st.session_state.celebrated = False
 
-# ------------------ GLOBAL STYLES ------------------
+# ------------------ GLOBAL STYLES (RED SERIF EVERYWHERE) ------------------
 st.markdown(
     """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800;900&display=swap');
 
 :root{
-  --red: #7b0f14;
+  --red:#7b0f14;
   --red2:#b3121a;
-  --ink:#151515;
+  --paper: rgba(255,255,255,0.94);
+  --shadow: 0 18px 42px rgba(0,0,0,0.12);
 }
 
-.block-container{max-width: 920px; padding-top: 2.2rem; padding-bottom: 3.2rem;}
+*{
+  font-family: "Playfair Display", Georgia, serif !important;
+}
+
+.block-container{
+  max-width: 980px;
+  padding-top: 2.2rem;
+  padding-bottom: 3.4rem;
+}
+
 .center{ text-align:center; }
 
 .big-title{
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: clamp(34px, 6vw, 56px);
+  font-size: clamp(34px, 6vw, 62px);
   font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--red);
   text-align:center;
   margin: 0.2rem 0 0.35rem;
-  letter-spacing: -0.03em;
 }
+
 .sub{
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: clamp(16px, 2.2vw, 20px);
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: rgba(123,15,20,0.78);
   text-align:center;
-  opacity: 0.88;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.7rem;
 }
 
 .card{
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(0,0,0,0.05);
-  padding: 22px;
-  border-radius: 22px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  background: var(--paper);
+  border: 1px solid rgba(123,15,20,0.12);
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
 }
 
 .card p{
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 17px;
+  color: rgba(123,15,20,0.92);
+  font-size: 18px;
   line-height: 1.65;
-  color: var(--ink);
   margin: 0 0 12px 0;
 }
 
 .lead{
-  font-family: Playfair Display, Georgia, serif;
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 26px;
+  font-weight: 900;
   color: var(--red);
+  letter-spacing: -0.02em;
   margin-bottom: 12px;
 }
 
@@ -71,25 +80,31 @@ st.markdown(
 }
 
 .photo-wrap{
-  border-radius: 22px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 22px 55px rgba(0,0,0,0.18);
-  border: 8px solid rgba(123,15,20,0.25);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.16);
+  border: 8px solid rgba(123,15,20,0.20);
 }
 
 .small-note{
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  opacity: 0.75;
+  color: rgba(123,15,20,0.65);
   font-size: 14px;
 }
 
 /* Buttons */
 div.stButton > button{
-  border-radius: 18px;
-  padding: 0.95rem 1rem;
+  border-radius: 20px;
+  padding: 1.0rem 1rem;
   font-weight: 900;
-  font-size: 1.05rem;
-  border: 1px solid rgba(0,0,0,0.08);
+  font-size: 1.08rem;
+  color: var(--red) !important;
+  background: rgba(255,255,255,0.95) !important;
+  border: 1px solid rgba(123,15,20,0.20) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+div.stButton > button:hover{
+  border-color: rgba(123,15,20,0.35) !important;
+  transform: translateY(-1px);
 }
 </style>
 """,
@@ -107,7 +122,7 @@ st.markdown(
   <div class="lead">Paulina, ich frage mich das wirklich oft…</div>
 
   <p>
-    wie kann ein Mensch das Leben so sehr verändern – nicht laut, nicht auf einmal,
+    Wie kann ein Mensch das Leben so sehr verändern – nicht laut, nicht auf einmal,
     sondern in tausend kleinen Momenten: wenn du lachst, wenn du mich ansiehst,
     wenn du einfach da bist.
   </p>
@@ -119,7 +134,7 @@ st.markdown(
   </p>
 
   <p style="margin-bottom:0;">
-    Ich liebe, wie wir zusammen sind. Und genau deshalb wollte ich dir heute etwas sagen –
+    Ich liebe unser Wir. Und genau deshalb wollte ich dir heute etwas sagen –
     und dich etwas fragen.
   </p>
 </div>
@@ -129,7 +144,7 @@ st.markdown(
 
 st.write("")
 
-# ------------------ PHOTO (NO TEXT UNDER IT) ------------------
+# ------------------ PHOTO (NO EXTRA TEXT) ------------------
 st.markdown('<div class="photo-wrap fade-in">', unsafe_allow_html=True)
 st.image("us.jpg", use_container_width=True)
 st.markdown("</div>", unsafe_allow_html=True)
@@ -137,7 +152,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.write("")
 st.write("")
 
-# ------------------ WEEKEND PLAN (rendered via components.html so it NEVER shows as code) ------------------
+# ------------------ WEEKEND PLAN (components.html so it never turns into code) ------------------
 components.html(
     """
 <div class="plan-card">
@@ -172,73 +187,80 @@ components.html(
 
     <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
       <path d="M 260 140
-               C 740 110, 780 260, 590 320
-               C 360 395, 330 450, 420 515
-               C 520 590, 680 590, 720 560"
+               C 740 110, 790 260, 590 325
+               C 360 405, 330 470, 430 535
+               C 540 605, 710 600, 760 560"
             fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
     </svg>
   </div>
 </div>
 
 <style>
-  :root{ --red:#7b0f14; --ink:#151515; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800;900&display=swap');
+  *{ font-family: "Playfair Display", Georgia, serif !important; }
+  :root{ --red:#7b0f14; }
 
   .plan-card{
-    background: rgba(255,255,255,0.92);
-    border: 1px solid rgba(0,0,0,0.05);
-    padding: 22px;
-    border-radius: 22px;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(123,15,20,0.12);
+    padding: 24px;
+    border-radius: 24px;
+    box-shadow: 0 18px 42px rgba(0,0,0,0.12);
   }
 
   .plan-head{ margin-bottom: 14px; }
   .plan-title{
-    font-family: "Playfair Display", Georgia, serif;
-    font-size: 26px;
-    font-weight: 800;
+    font-size: 44px;
+    font-weight: 900;
     color: var(--red);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
   }
-  .plan-sub{ opacity: 0.75; margin-top: 4px; }
+  .plan-sub{
+    margin-top: 8px;
+    font-size: 18px;
+    color: rgba(123,15,20,0.70);
+  }
 
   .plan{
     position: relative;
-    height: 520px;
+    height: 540px;
     border-radius: 18px;
-    background: linear-gradient(135deg, rgba(123,15,20,0.06), rgba(255,255,255,0.55));
+    background: radial-gradient(circle at 20% 20%, rgba(123,15,20,0.06), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(123,15,20,0.06), transparent 50%),
+                linear-gradient(135deg, rgba(255,255,255,0.70), rgba(255,255,255,0.35));
     overflow:hidden;
-    border: 1px solid rgba(123,15,20,0.10);
+    border: 1px solid rgba(123,15,20,0.12);
   }
 
-  .plan-item{ position:absolute; max-width: 320px; padding: 10px 12px; color: var(--ink); }
+  .plan-item{ position:absolute; max-width: 340px; padding: 10px 12px; color: rgba(123,15,20,0.92); }
   .day{
-    font-size: 34px;
-    font-weight: 1000;
-    letter-spacing: -0.02em;
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
     color: var(--red);
     line-height: 1.0;
   }
-  .title{ font-size: 18px; font-weight: 900; margin-top: 2px; }
-  .desc{ font-size: 14px; opacity: 0.85; margin-top: 2px; }
+  .title{ font-size: 22px; font-weight: 900; margin-top: 4px; }
+  .desc{ font-size: 16px; margin-top: 4px; color: rgba(123,15,20,0.82); }
 
-  .tl{ left: 24px; top: 22px; }
-  .mr{ right: 22px; top: 205px; }
-  .bl{ left: 24px; bottom: 28px; }
+  .tl{ left: 34px; top: 30px; }
+  .mr{ right: 34px; top: 235px; text-align:left; }
+  .bl{ left: 34px; bottom: 34px; }
 
   .between{
     position:absolute;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 18px;
     background: rgba(123,15,20,0.10);
     border: 1px solid rgba(123,15,20,0.18);
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-radius: 999px;
-    color: rgba(20,20,20,0.92);
+    color: rgba(123,15,20,0.90);
     backdrop-filter: blur(3px);
   }
-  .b1{ left: 360px; top: 130px; }
-  .b2{ left: 330px; top: 370px; }
+  .b1{ left: 430px; top: 145px; }
+  .b2{ left: 395px; top: 405px; }
 
   .curve{
     position:absolute;
@@ -250,16 +272,21 @@ components.html(
   }
 
   @media (max-width: 560px){
-    .plan{ height: 560px; }
-    .day{ font-size: 28px; }
-    .plan-item{ max-width: 270px; }
-    .b1{ left: 26px; top: 165px; }
-    .b2{ left: 26px; top: 405px; }
-    .mr{ right: 10px; left: 26px; top: 250px; }
+    .plan-title{ font-size: 38px; }
+    .plan{ height: 610px; }
+    .day{ font-size: 34px; }
+    .title{ font-size: 20px; }
+    .desc{ font-size: 15px; }
+    .plan-item{ max-width: 300px; }
+    .mr{ left: 22px; right: 22px; top: 280px; }
+    .tl{ left: 22px; top: 28px; }
+    .bl{ left: 22px; bottom: 34px; }
+    .b1{ left: 22px; top: 190px; }
+    .b2{ left: 22px; top: 455px; }
   }
 </style>
 """,
-    height=690,
+    height=740,
     scrolling=False,
 )
 
@@ -270,13 +297,13 @@ st.write("")
 st.markdown(
     """
 <div class="card fade-in center">
-  <div style="font-family:Playfair Display, Georgia, serif; font-size:28px; font-weight:800; color:#7b0f14;">
+  <div style="font-size:56px; font-weight:900; color:#7b0f14; letter-spacing:-0.03em; line-height:1.0;">
     Und jetzt…
   </div>
-  <div style="font-family:Inter, system-ui; font-size:18px; opacity:0.9; margin-top:6px;">
+  <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; margin-top:12px;">
     Paulina, willst du mein Valentine sein? 💘
   </div>
-  <div class="small-note" style="margin-top:10px;">(Du musst dich entscheiden 😇)</div>
+  <div class="small-note" style="margin-top:12px;">(Du musst dich entscheiden 😇)</div>
 </div>
 """,
     unsafe_allow_html=True,
@@ -294,17 +321,24 @@ with col2:
         st.session_state.celebrated = False
         st.rerun()
 
-# ------------------ PURE CSS HEART CELEBRATION (no JS, always works) ------------------
-def css_hearts_overlay(message="Ich liebe dich über alles."):
-    # Create many hearts with staggered delays + big message that fades in
+# ------------------ BIG HEART CELEBRATION (large hearts + message) ------------------
+def big_hearts_overlay(message="Ich liebe dich über alles."):
     hearts_html = []
-    # fixed set of positions + delays (stable, mobile friendly)
-    positions = [5,12,18,24,30,36,42,48,54,60,66,72,78,84,90,96]
-    for i in range(1, 49):
-        left = positions[i % len(positions)]
-        delay = (i % 12) * 0.12
-        dur = 2.8 + (i % 7) * 0.25
-        size = 18 + (i % 9) * 4
+    # more hearts + mix sizes (some huge)
+    for i in range(1, 120):
+        left = (i * 7) % 100  # deterministic spread
+        delay = (i % 18) * 0.08
+        dur = 3.2 + (i % 8) * 0.22
+
+        if i % 20 == 0:
+            size = 110
+        elif i % 10 == 0:
+            size = 78
+        elif i % 5 == 0:
+            size = 54
+        else:
+            size = 28 + (i % 12) * 3
+
         hearts_html.append(
             f"<span class='h' style='left:{left}vw; animation-delay:{delay}s; animation-duration:{dur}s; font-size:{size}px;'>❤️</span>"
         )
@@ -318,31 +352,24 @@ def css_hearts_overlay(message="Ich liebe dich über alles."):
   z-index: 999999;
   pointer-events: none;
   overflow: hidden;
-  background: rgba(0,0,0,0.10);
-  animation: overlayFade 5.2s ease forwards;
+  background: rgba(255,255,255,0.0);
 }}
 
 #hearts-overlay .h {{
   position: absolute;
-  top: 110vh;
-  will-change: transform, top, opacity;
-  opacity: 0.95;
-  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.18));
+  top: 115vh;
+  opacity: 0.0;
+  filter: drop-shadow(0 18px 22px rgba(0,0,0,0.18));
   animation-name: floatUp;
   animation-timing-function: ease-in-out;
   animation-iteration-count: 1;
+  will-change: transform, top, opacity;
 }}
 
 @keyframes floatUp {{
-  0%   {{ top: 110vh; transform: translateX(0) rotate(0deg); opacity: 0; }}
-  10%  {{ opacity: 0.95; }}
-  100% {{ top: -20vh; transform: translateX(calc(-60px + 120px * var(--rand))) rotate(420deg); opacity: 0; }}
-}}
-
-@keyframes overlayFade {{
-  0% {{ opacity: 1; }}
-  80% {{ opacity: 1; }}
-  100% {{ opacity: 0; }}
+  0%   {{ top: 115vh; transform: translateX(0) rotate(0deg) scale(0.98); opacity: 0; }}
+  8%   {{ opacity: 0.98; }}
+  100% {{ top: -25vh; transform: translateX(calc(-120px + 240px * var(--rand))) rotate(520deg) scale(1.02); opacity: 0; }}
 }}
 
 #love-text {{
@@ -353,35 +380,34 @@ def css_hearts_overlay(message="Ich liebe dich über alles."):
   z-index: 1000000;
   pointer-events: none;
   text-align: center;
-  padding: 18px 18px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.72);
+  padding: 18px 22px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.82);
   border: 1px solid rgba(123,15,20,0.22);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.22);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.18);
   opacity: 0;
-  animation: textIn 4.8s ease forwards;
-  animation-delay: 1.0s;
+  animation: textIn 5.0s ease forwards;
+  animation-delay: 0.9s;
 }}
 
 #love-text .t {{
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(28px, 4.6vw, 54px);
-  font-weight: 800;
+  font-size: clamp(34px, 4.9vw, 64px);
+  font-weight: 900;
   color: #7b0f14;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }}
 
 #love-text .s {{
-  margin-top: 6px;
-  font-family: Inter, system-ui;
-  font-size: 14px;
-  opacity: 0.75;
+  margin-top: 8px;
+  font-size: 16px;
+  color: rgba(123,15,20,0.70);
 }}
 
 @keyframes textIn {{
   0% {{ opacity: 0; transform: translate(-50%, -48%) scale(0.98); }}
-  20% {{ opacity: 1; transform: translate(-50%, -50%) scale(1.0); }}
-  85% {{ opacity: 1; }}
+  18% {{ opacity: 1; transform: translate(-50%, -50%) scale(1.0); }}
+  82% {{ opacity: 1; }}
   100% {{ opacity: 0; }}
 }}
 </style>
@@ -389,21 +415,22 @@ def css_hearts_overlay(message="Ich liebe dich über alles."):
 <div id="hearts-overlay">
   {''.join(hearts_html)}
 </div>
+
 <div id="love-text">
   <div class="t">{message}</div>
   <div class="s">für immer du & ich 💘</div>
 </div>
 
 <script>
-  // add a tiny random factor for horizontal drift (CSS variable) – safe, no parent hacks
+  // set random drift safely (local DOM)
   document.querySelectorAll('#hearts-overlay .h').forEach((el) => {{
     el.style.setProperty('--rand', Math.random().toFixed(2));
   }});
-  // auto-remove nodes after animation
+  // cleanup
   setTimeout(() => {{
     const o = document.getElementById('hearts-overlay'); if(o) o.remove();
     const t = document.getElementById('love-text'); if(t) t.remove();
-  }}, 5600);
+  }}, 6200);
 </script>
         """,
         unsafe_allow_html=True,
@@ -414,13 +441,13 @@ if st.session_state.answer == "YES":
     st.success("JAAAA!!! 💘💘💘")
 
     if not st.session_state.celebrated:
-        css_hearts_overlay("Ich liebe dich über alles.")
+        big_hearts_overlay("Ich liebe dich über alles.")
         st.session_state.celebrated = True
 
     st.markdown(
         """
 <div class="card fade-in center">
-  <div style="font-family:Inter, system-ui; font-size:20px; font-weight:900; color:#151515; line-height:1.35;">
+  <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; line-height:1.25;">
     Ich liebe dich, Paulina. ❤️<br/>
     Dein Jan Philipp 😘
   </div>
@@ -434,7 +461,7 @@ elif st.session_state.answer == "NO":
     st.markdown(
         """
 <div class="card fade-in center">
-  <div style="font-family:Inter, system-ui; font-size:18px; line-height:1.45;">
+  <div style="font-size:22px; font-weight:900; color:#7b0f14; line-height:1.35;">
     Vielleicht klickst du <b>Ja</b> nur zur Sicherheit nochmal 😉
   </div>
 </div>
