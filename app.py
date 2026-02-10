@@ -309,10 +309,10 @@ st.markdown(
     """
 <div class="card fade-in center">
   <div style="font-size:56px; font-weight:900; color:#7b0f14; letter-spacing:-0.03em; line-height:1.0;">
-    Und jetzt…
+    Will you be my Valentine, Pauli? 💘
   </div>
   <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; margin-top:12px;">
-    Will you be my Valentine, Pauli? 💘 💘
+    OYu odnt have a choice 
   </div>
   <div class="small-note" style="margin-top:12px;">(Du musst dich entscheiden 😇)</div>
 </div>
