@@ -489,8 +489,6 @@ def big_hearts_overlay(message="Ich liebe dich über alles."):
 
 # ------------------ RESULTS ------------------
 if st.session_state.answer == "YES":
-    st.success("JAAAA!!! 💘💘💘")
-
     if not st.session_state.celebrated:
         big_hearts_overlay("Ich freue mich so sehr:)")
         st.session_state.celebrated = True
@@ -500,19 +498,6 @@ if st.session_state.answer == "YES":
 <div class="card fade-in center">
   <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; line-height:1.25;">
     Ich liebe dich Paulina ❤️<br/>
-  </div>
-</div>
-""",
-        unsafe_allow_html=True,
-    )
-
-elif st.session_state.answer == "NO":
-    st.warning("Okaaay… aber bist du dir *wirklich* sicher? 😄")
-    st.markdown(
-        """
-<div class="card fade-in center">
-  <div style="font-size:22px; font-weight:900; color:#7b0f14; line-height:1.35;">
-    Vielleicht klickst du <b>Ja</b> nur zur Sicherheit nochmal 😉
   </div>
 </div>
 """,
