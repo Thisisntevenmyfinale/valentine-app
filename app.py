@@ -113,7 +113,7 @@ div.stButton > button:hover{
 
 # ------------------ HEADER ------------------
 st.markdown('<div class="big-title">Pauli & JP V-Day</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub">Ich habe etwas für dich vorbereitet.</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub"></div>', unsafe_allow_html=True)
 
 # ------------------ INTRO ------------------
 st.markdown(
