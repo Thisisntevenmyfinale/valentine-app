@@ -150,187 +150,222 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.write("")
 st.write("")
 
-# ------------------ WEEKEND PLAN (components.html so it never turns into code) ------------------
-components.html(
-    """
-    <div class="plan-card">
-      <div class="plan-head">
-        <div class="plan-title">V-Day Plan</div>
-        <div class="plan-sub"></div>
-      </div>
 
-      <div class="plan">
-        <div class="plan-item tl">
-          <div class="day">FRIDAY 13</div>
-          <div class="title">Dinner</div>
-          <div class="desc">Überraschungsrestaurant 🍽️</div>
-          <div class="desc">und reinfeiern in den V-Day 💘</div>
-        </div>
 
-        <div class="plan-item mr">
-          <div class="day">SATURDAY 14</div>
-          <div class="title">Rooftop Daydrinks</div>
-          <div class="desc">El Palace ☀️🍸</div>
-          <div class="desc">abends wieder Dinner ✨</div>
-        </div>
 
-        <div class="plan-item bl">
-          <div class="day">SUNDAY 15</div>
-          <div class="title">Kuschelis</div>
-          <div class="desc">den ganzen Morgen 🧸</div>
-        </div>
 
-        <!-- labels ON TOP of the curve -->
-        <div class="between b1">kleine Überraschung 🎁</div>
-        <div class="between b2">Desssert 😉</div>
 
-        <!-- ONE curve (works for desktop + mobile via CSS transforms) -->
-        <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-          <path class="curve-path" d="M 330 145 C 720 120, 825 255, 610 325 C 410 390, 350 475, 465 540 C 585 610, 740 605, 800 560" fill="none"/>
-        </svg>
-      </div>
+
+
+
+
+# ------------------ WEEKEND PLAN (separate desktop + mobile CSS) ------------------
+
+plan_html = """
+<div class="plan-card">
+  <div class="plan-head">
+    <div class="plan-title">V-Day Plan</div>
+    <div class="plan-sub"></div>
+  </div>
+
+  <div class="plan">
+    <div class="plan-item tl">
+      <div class="day">FRIDAY 13</div>
+      <div class="title">Dinner</div>
+      <div class="desc">Überraschungsrestaurant 🍽️</div>
+      <div class="desc">und reinfeiern in den V-Day 💘</div>
     </div>
 
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800;900&display=swap');
-    *{ font-family: "Playfair Display", Georgia, serif !important; }
-    :root{ --red:#7b0f14; }
+    <div class="plan-item mr">
+      <div class="day">SATURDAY 14</div>
+      <div class="title">Rooftop Daydrinks</div>
+      <div class="desc">El Palace ☀️🍸</div>
+      <div class="desc">abends wieder Dinner ✨</div>
+    </div>
 
-    .plan-card{
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(123,15,20,0.12);
-      padding: 24px;
-      border-radius: 24px;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.12);
-    }
+    <div class="plan-item bl">
+      <div class="day">SUNDAY 15</div>
+      <div class="title">Kuschelis</div>
+      <div class="desc">den ganzen Morgen 🧸</div>
+    </div>
 
-    .plan-head{ margin-bottom: 16px; text-align: center; }
+    <div class="between b1">kleine Überraschung 🎁</div>
+    <div class="between b2">Desssert 😉</div>
 
-    .plan-title{
-      font-size: 44px;
-      font-weight: 900;
-      color: var(--red);
-      letter-spacing: -0.03em;
-      line-height: 1.0;
-    }
+    <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+      <path class="curve-path" d="M 330 145 C 720 120, 825 255, 610 325 C 410 390, 350 475, 465 540 C 585 610, 740 605, 800 560" fill="none"/>
+    </svg>
+  </div>
+</div>
+"""
 
-    .plan-sub{
-      margin-top: 8px;
-      font-size: 18px;
-      color: rgba(123,15,20,0.70);
-    }
+desktop_css = """
+/* -------- DESKTOP (>= 561px) -------- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800;900&display=swap');
+*{ font-family: "Playfair Display", Georgia, serif !important; }
+:root{ --red:#7b0f14; }
 
-    .plan{
-      position: relative;
-      height: 540px;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(123,15,20,0.06), transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(123,15,20,0.06), transparent 50%),
-        linear-gradient(135deg, rgba(255,255,255,0.70), rgba(255,255,255,0.35));
-      overflow: hidden;
-      border: 1px solid rgba(123,15,20,0.12);
-    }
+.plan-card{
+  background: rgba(255,255,255,0.94);
+  border: 1px solid rgba(123,15,20,0.12);
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.12);
+}
 
-    .plan-item{
-      position: absolute;
-      max-width: 340px;
-      padding: 10px 12px;
-      color: rgba(123,15,20,0.92);
-      z-index: 4;
-    }
+.plan-head{ margin-bottom: 16px; text-align: center; }
 
-    .day{
-      font-size: 40px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--red);
-      line-height: 1.0;
-    }
+.plan-title{
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
 
-    .title{ font-size: 22px; font-weight: 900; margin-top: 4px; }
-    .desc{ font-size: 16px; margin-top: 4px; color: rgba(123,15,20,0.82); }
+.plan-sub{
+  margin-top: 8px;
+  font-size: 18px;
+  color: rgba(123,15,20,0.70);
+}
 
-    .tl{ left: 34px; top: 30px; }
-    .mr{ right: 34px; top: 235px; text-align: left; }
-    .bl{ left: 34px; bottom: 34px; }
+.plan{
+  position: relative;
+  height: 540px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(123,15,20,0.06), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(123,15,20,0.06), transparent 50%),
+    linear-gradient(135deg, rgba(255,255,255,0.70), rgba(255,255,255,0.35));
+  overflow: hidden;
+  border: 1px solid rgba(123,15,20,0.12);
+}
 
-    /* pills */
-    .between{
-      position: absolute;
-      font-weight: 900;
-      font-size: 18px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(123,15,20,0.18);
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: rgba(123,15,20,0.92);
-      backdrop-filter: blur(3px);
-      z-index: 6;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-      white-space: nowrap;
-    }
+.plan-item{
+  position: absolute;
+  max-width: 340px;
+  padding: 10px 12px;
+  color: rgba(123,15,20,0.92);
+  z-index: 4;
+}
 
-    /* Desktop: pill positions (nice + readable over curve) */
-    .b1{ left: 520px; top: 132px; }
-    .b2{ left: 430px; top: 360px; }
+.day{
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--red);
+  line-height: 1.0;
+}
 
-    /* curve */
-    .curve{
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.95;
-      pointer-events: none;
-      z-index: 1;
-    }
+.title{ font-size: 22px; font-weight: 900; margin-top: 4px; }
+.desc{ font-size: 16px; margin-top: 4px; color: rgba(123,15,20,0.82); }
 
-    .curve-path{
-      stroke: var(--red);
-      stroke-width: 16px;
-      stroke-linecap: round;
-    }
+.tl{ left: 34px; top: 30px; }
+.mr{ right: 34px; top: 235px; text-align: left; }
+.bl{ left: 34px; bottom: 34px; }
 
-    /* ------------------ MOBILE: SAME LAYOUT AS DESKTOP, JUST SMALLER ------------------ */
-    @media (max-width: 560px){
-      .plan-card{ padding: 18px; }
-      .plan-title{ font-size: 34px; }
-      .plan-sub{ font-size: 15px; }
+/* pills */
+.between{
+  position: absolute;
+  font-weight: 900;
+  font-size: 18px;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(123,15,20,0.18);
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: rgba(123,15,20,0.92);
+  backdrop-filter: blur(3px);
+  z-index: 6;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  white-space: nowrap;
+}
 
-      .plan{
-        height: 460px;
-        border-radius: 16px;
-      }
+/* Desktop pill positions */
+.b1{ left: 520px; top: 132px; }
+.b2{ left: 430px; top: 360px; }
 
-      .plan-item{
-        max-width: 230px;
-        padding: 8px 10px;
-      }
+/* curve */
+.curve{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 1;
+  transform: none;              /* explicit reset for desktop */
+  transform-origin: center;
+}
 
-      .day{ font-size: 26px; }       /* MUCH smaller days */
-      .title{ font-size: 16px; }
-      .desc{ font-size: 13px; }
+.curve-path{
+  stroke: var(--red);
+  stroke-width: 16px;
+  stroke-linecap: round;
+}
+"""
 
-      /* Keep the triangle layout */
-      .tl{ left: 18px; top: 18px; }
-      .mr{ right: 18px; top: 190px; }
-      .bl{ left: 18px; bottom: 18px; }
+mobile_css = """
+/* -------- MOBILE (<= 560px) -------- */
+/* Only overrides what differs from desktop */
+.plan-card{ padding: 18px; }
+.plan-title{ font-size: 34px; }
+.plan-sub{ font-size: 15px; }
 
-      /* Pills: clearly between sections + on top of curve */
-      .between{ font-size: 14px; padding: 8px 10px; }
-      .b1{ left: 250px; top: 108px; }  /* between Fri & Sat */
-      .b2{ left: 210px; top: 300px; }  /* between Sat & Sun (night) */
+.plan{
+  height: 460px;
+  border-radius: 16px;
+}
 
-      /* Curve: pull it slightly to the left so it sits “like desktop” */
-      .curve{ transform: scaleX(0.86) translateX(-60px); transform-origin: center; }
-      .curve-path{ stroke-width: 13px; }
-    }
-    </style>
-    """,
+.plan-item{
+  max-width: 230px;
+  padding: 8px 10px;
+}
+
+.day{ font-size: 26px; }
+.title{ font-size: 16px; }
+.desc{ font-size: 13px; }
+
+.tl{ left: 18px; top: 18px; }
+.mr{ right: 18px; top: 190px; }
+.bl{ left: 18px; bottom: 18px; }
+
+.between{ font-size: 14px; padding: 8px 10px; }
+.b1{ left: 250px; top: 108px; }
+.b2{ left: 210px; top: 300px; }
+
+.curve{ transform: scaleX(0.86) translateX(-60px); transform-origin: center; }
+.curve-path{ stroke-width: 13px; }
+"""
+
+plan_css = f"""
+<style>
+/* Desktop bucket */
+@media (min-width: 561px) {{
+{desktop_css}
+}}
+
+/* Mobile bucket */
+@media (max-width: 560px) {{
+{mobile_css}
+}}
+</style>
+"""
+
+components.html(
+    plan_html + plan_css,
     height=740,
     scrolling=False,
 )
+
+
+
+
+
+
+
+
+
+
 
 st.write("")
 st.write("")
