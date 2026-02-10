@@ -322,7 +322,7 @@ st.markdown(
 
 col1, col2 = st.columns(2)
 with col1:
-    if st.button("Ja 💖", use_container_width=True, key="yes_btn"):
+    if st.button("Jaaaa", use_container_width=True, key="yes_btn"):
         st.session_state.answer = "YES"
         st.session_state.celebrated = False
         st.rerun()
