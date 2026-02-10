@@ -173,7 +173,7 @@ components.html(
       <div class="day">SATURDAY 14</div>
       <div class="title">Rooftop Daydrinks</div>
       <div class="desc">El Palace ☀️🍸</div>
-      <div class="desc">abends wieder Dinner ✨</div>
+      <div class="desc">und abends wieder Dinner ✨</div>
     </div>
 
     <div class="plan-item bl">
