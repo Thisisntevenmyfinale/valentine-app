@@ -134,8 +134,7 @@ st.markdown(
   </p>
 
   <p style="margin-bottom:0;">
-    Ich liebe unser Wir. Und genau deshalb wollte ich dir heute etwas sagen –
-    und dich etwas fragen.
+    Ich liebe unser Wir.
   </p>
 </div>
 """,
