@@ -340,7 +340,7 @@ st.markdown(
   </div>
 
   <div style="font-size:46px; font-weight:900; color:#7b0f14; letter-spacing:-0.03em; line-height:1.05; margin-top:10px;">
-    Pauli, can I claim you as my Valentine? :)
+    Can I claim you as my Valentine Pauli? :)
   </div>
 
   <div class="small-note" style="margin-top:14px; color:rgba(123,15,20,0.60); font-size:14px;">
