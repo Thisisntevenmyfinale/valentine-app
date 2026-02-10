@@ -352,7 +352,7 @@ mobile_css = """
 .tl{ left: 16px; top: 16px; }
 
 /* 3) Saturday further right + a bit lower so it clears the curve */
-.mr{ right: 2px; top: 300px; text-align: left; }
+.mr{ right: -5px; top: 300px; text-align: left; }
 
 /* bottom-left Sunday a bit lower so it breathes */
 .bl{ left: 16px; bottom: 16px; }
