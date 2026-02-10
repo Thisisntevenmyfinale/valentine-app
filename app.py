@@ -304,20 +304,26 @@ st.write("")
 st.write("")
 
 # ------------------ QUESTION ------------------
+# ------------------ QUESTION ------------------
 st.markdown(
     """
 <div class="card fade-in center">
-  <div style="font-size:56px; font-weight:900; color:#7b0f14; letter-spacing:-0.03em; line-height:1.0;">
-    I’ve got a question...
+  <div style="font-size:22px; font-weight:800; color:rgba(123,15,20,0.78); letter-spacing:-0.01em; line-height:1.2;">
+    One last thing…
   </div>
-  <div style="font-size:28px; font-weight:900; color:#7b0f14; letter-spacing:-0.02em; margin-top:12px;">
-    Pauli, can I claim you as my Valentine? :) 
+
+  <div style="font-size:46px; font-weight:900; color:#7b0f14; letter-spacing:-0.03em; line-height:1.05; margin-top:10px;">
+    Pauli, can I claim you as my Valentine? 😘
   </div>
-  <div class="small-note" style="margin-top:12px;">()</div>
+
+  <div class="small-note" style="margin-top:14px; color:rgba(123,15,20,0.60); font-size:14px;">
+    (There is only one correct answer 💘)
+  </div>
 </div>
 """,
     unsafe_allow_html=True,
 )
+
 
 col1, col2 = st.columns(2)
 with col1:
