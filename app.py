@@ -194,6 +194,7 @@ components.html(
          C 515 600, 505 600, 510 565"
       fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
 
+
     </svg>
 
     <!-- Mobile curve -->
