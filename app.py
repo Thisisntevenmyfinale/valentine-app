@@ -158,7 +158,7 @@ components.html(
 <div class="plan-card">
   <div class="plan-head">
     <div class="plan-title">V-Day Plan</div>
-    <div class="plan-sub"></div>
+    <div class="plan-sub">(scroll weiter… ich hab mir Gedanken gemacht 😉)</div>
   </div>
 
   <div class="plan">
@@ -173,7 +173,7 @@ components.html(
       <div class="day">SATURDAY 14</div>
       <div class="title">Rooftop Daydrinks</div>
       <div class="desc">El Palace ☀️🍸</div>
-      <div class="desc">und abends wieder Dinner ✨</div>
+      <div class="desc">abends wieder Dinner ✨</div>
     </div>
 
     <div class="plan-item bl">
@@ -182,29 +182,19 @@ components.html(
       <div class="desc">den ganzen Morgen 🧸</div>
     </div>
 
-    <!-- labels ON TOP of the curve (DESKTOP positions below in CSS) -->
+    <!-- labels ON TOP of the curve -->
     <div class="between b1">kleine Überraschung 🎁</div>
-    <div class="between b2">Dessert 😉</div>
+    <div class="between b2">Zeit für uns 😉</div>
 
-    <!-- Desktop curve -->
-<svg class="curve curve-desktop" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M 330 145
-         C 720 120, 825 255, 610 325
-         C 410 390, 320 515, 360 580"
-      fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
-
-</svg>
-
-
-    <!-- Mobile curve -->
-<svg class="curve curve-mobile" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M 640 90
-           C 860 150, 860 270, 650 335
-           C 470 395, 500 520, 670 585
-           C 790 635, 890 600, 930 545"
-        fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
-</svg>
-
+    <!-- ONE curve (works for desktop + mobile via CSS transforms) -->
+    <svg class="curve" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+      <path class="curve-path"
+            d="M 330 145
+               C 720 120, 825 255, 610 325
+               C 410 390, 350 475, 465 540
+               C 585 610, 740 605, 800 560"
+            fill="none"/>
+    </svg>
   </div>
 </div>
 
@@ -280,34 +270,30 @@ components.html(
   }
 
   .tl{ left: 34px; top: 30px; }
-
-  /* ✅ Saturday further right so it doesn't overlap the curve */
-  .mr{ right: 12px; top: 235px; text-align: left; }
-
+  .mr{ right: 34px; top: 235px; text-align: left; }
   .bl{ left: 34px; bottom: 34px; }
 
-  /* pills ON TOP of the curve (make them readable even when overlapping the line) */
+  /* pills */
   .between{
     position: absolute;
     font-weight: 900;
     font-size: 18px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(123,15,20,0.18);
     padding: 10px 14px;
     border-radius: 999px;
     color: rgba(123,15,20,0.92);
-    white-space: nowrap;
-    z-index: 8;
-
-    /* key: white-ish pill so it sits cleanly on top of the curve */
-    background: rgba(255,255,255,0.86);
-    border: 1px solid rgba(123,15,20,0.22);
+    backdrop-filter: blur(3px);
+    z-index: 6;
     box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-    backdrop-filter: blur(4px);
+    white-space: nowrap;
   }
 
-  /* ✅ Desktop: both pills moved left onto the curve */
-  .b1{ left: 455px; top: 112px; }  /* between Fri & Sat, clearly on the line */
-  .b2{ left: 325px; top: 305px; }  /* between Sat & Sun, clearly on the line */
+  /* Desktop: pill positions (nice + readable over curve) */
+  .b1{ left: 520px; top: 132px; }
+  .b2{ left: 430px; top: 360px; }
 
+  /* curve */
   .curve{
     position: absolute;
     inset: 0;
@@ -317,125 +303,55 @@ components.html(
     pointer-events: none;
     z-index: 1;
   }
+  .curve-path{
+    stroke: var(--red);
+    stroke-width: 16px;
+    stroke-linecap: round;
+  }
 
-  /* Desktop shows only desktop curve */
-  .curve-desktop{ display: block; }
-  .curve-mobile{ display: none; }
-
-  
-  
-  
-  
-  
-  
-  
-  
+  /* ------------------ MOBILE: SAME LAYOUT AS DESKTOP, JUST SMALLER ------------------ */
   @media (max-width: 560px){
+    .plan-card{ padding: 18px; }
+    .plan-title{ font-size: 34px; }
+    .plan-sub{ font-size: 15px; }
 
-  /* Head */
-  .plan-title{ font-size: 30px; line-height: 1.05; }
-  .plan-sub{ font-size: 13px; margin-top: 6px; }
+    .plan{
+      height: 460px;               /* smaller but still has room for the curve */
+      border-radius: 16px;
+    }
 
-  /* Plan container */
-  .plan{
-    height: auto;
-    padding: 16px 14px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: stretch;
+    .plan-item{
+      max-width: 230px;            /* keeps boxes tight */
+      padding: 8px 10px;
+    }
+
+    .day{ font-size: 26px; }       /* MUCH smaller days */
+    .title{ font-size: 16px; }
+    .desc{ font-size: 13px; }
+
+    /* Keep the triangle layout */
+    .tl{ left: 18px; top: 18px; }
+    .mr{ right: 18px; top: 190px; }
+    .bl{ left: 18px; bottom: 18px; }
+
+    /* Pills: clearly between sections + on top of curve */
+    .between{ font-size: 14px; padding: 8px 10px; }
+    .b1{ left: 250px; top: 108px; }   /* between Fri & Sat */
+    .b2{ left: 210px; top: 300px; }   /* between Sat & Sun (night) */
+
+    /* Curve: pull it slightly to the left so it sits “like desktop” */
+    .curve{
+      transform: scaleX(0.86) translateX(-60px);
+      transform-origin: center;
+    }
+    .curve-path{ stroke-width: 13px; }
   }
-
-  /* Gerade rote Linie im Hintergrund */
-  .plan::before{
-    content:"";
-    position:absolute;
-    left: 50%;
-    top: 18px;
-    bottom: 18px;
-    width: 8px;
-    transform: translateX(-50%);
-    border-radius: 999px;
-    background: rgba(123,15,20,0.90);
-    opacity: 0.28;
-    z-index: 0;
-    pointer-events:none;
-  }
-
-  /* Alle Items werden normale Blöcke (nicht absolut) */
-  .plan-item{
-    position: relative;
-    left: auto; right: auto; top: auto; bottom: auto;
-
-    width: 100%;
-    max-width: 100%;
-
-    padding: 14px 14px;
-    border-radius: 16px;
-
-    background: rgba(255,255,255,0.88);
-    border: 1px solid rgba(123,15,20,0.16);
-
-    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
-    z-index: 2;
-  }
-
-  /* Typo kleiner */
-  .day{ font-size: 26px; line-height: 1.0; }
-  .title{ font-size: 16px; margin-top: 6px; }
-  .desc{ font-size: 13px; margin-top: 6px; }
-
-  /* Pills: klein + mittig über der Linie */
-  .between{
-    position: relative;
-    left: auto; top: auto;
-    align-self: center;
-
-    font-size: 14px;
-    padding: 9px 12px;
-    border-radius: 999px;
-
-    background: rgba(255,255,255,0.92);
-    border: 1px solid rgba(123,15,20,0.22);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    z-index: 3;
-    white-space: nowrap;
-  }
-
-  /* Optional: kleine optische “Anker” zur Linie */
-  .plan-item::before{
-    content:"";
-    position:absolute;
-    left: 50%;
-    top: 16px;
-    width: 10px;
-    height: 10px;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: rgba(123,15,20,0.55);
-  }
-
-  /* Desktop absolute positions egalisieren */
-  .tl,.mr,.bl{ text-align:left; }
-
-  /* Kurven auf Mobile aus */
-  .curve-desktop{ display:none !important; }
-  .curve-mobile{ display:none !important; }
-}
-
-
-
-
-
-
-
-
-
 </style>
 """,
     height=740,
     scrolling=False,
 )
+
 
 
 
