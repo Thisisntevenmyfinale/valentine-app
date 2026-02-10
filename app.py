@@ -311,6 +311,14 @@ desktop_css = """
 
 /* optional: keep pills above the curve */
 .between{ z-index: 10; }
+/* Desktop-only: move Saturday block a bit to the right */
+.mr{
+  right: 10px;          /* war 34px -> kleiner = weiter nach rechts */
+}
+
+/* optional: make sure it stays above the curve */
+.mr{ z-index: 6; }
+
 """
 
 
