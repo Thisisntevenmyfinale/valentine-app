@@ -64,7 +64,7 @@ def hearts_rain():
           }, 50);
           setTimeout(() => heart.remove(), 6500);
         };
-        for (let i=0; i<40; i++) setTimeout(makeHeart, i*120);
+        for (let i=0; i<80; i++) setTimeout(makeHeart, i*80);
         </script>
         """,
         height=0,
