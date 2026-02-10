@@ -332,82 +332,97 @@ components.html(
   
   @media (max-width: 560px){
 
-  /* Headline oben nicht abgeschnitten */
-  .plan-title{
-    font-size: 34px;
-    line-height: 1.05;
-  }
-  .plan-sub{
-    font-size: 14px;
-    margin-top: 6px;
-  }
+  /* Head */
+  .plan-title{ font-size: 30px; line-height: 1.05; }
+  .plan-sub{ font-size: 13px; margin-top: 6px; }
 
-  /* Mobile Layout: sauber gestapelt */
+  /* Plan container */
   .plan{
     height: auto;
-    padding: 18px 16px 22px;
+    padding: 16px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
   }
 
-  /* Items werden normale Cards (nicht absolut) */
+  /* Gerade rote Linie im Hintergrund */
+  .plan::before{
+    content:"";
+    position:absolute;
+    left: 50%;
+    top: 18px;
+    bottom: 18px;
+    width: 8px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: rgba(123,15,20,0.90);
+    opacity: 0.28;
+    z-index: 0;
+    pointer-events:none;
+  }
+
+  /* Alle Items werden normale Blöcke (nicht absolut) */
   .plan-item{
     position: relative;
     left: auto; right: auto; top: auto; bottom: auto;
-    max-width: 100%;
+
     width: 100%;
-    margin: 0 0 16px 0;
-    padding: 16px 16px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.78);
+    max-width: 100%;
+
+    padding: 14px 14px;
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.88);
     border: 1px solid rgba(123,15,20,0.16);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.10);
+
+    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    z-index: 2;
   }
 
-  /* Schrift deutlich kleiner & cleaner */
-  .day{
-    font-size: 32px;
-    line-height: 1.0;
-  }
-  .title{
-    font-size: 18px;
-    margin-top: 6px;
-  }
-  .desc{
-    font-size: 14px;
-    margin-top: 6px;
-  }
+  /* Typo kleiner */
+  .day{ font-size: 26px; line-height: 1.0; }
+  .title{ font-size: 16px; margin-top: 6px; }
+  .desc{ font-size: 13px; margin-top: 6px; }
 
-  /* Desktop-Positionen deaktivieren */
-  .tl, .mr, .bl{ }
-
-  /* Pills: zwischen den Cards, mittig */
+  /* Pills: klein + mittig über der Linie */
   .between{
     position: relative;
     left: auto; top: auto;
-    display: inline-block;
-    margin: 6px auto 18px;
-    font-size: 16px;
-    padding: 10px 14px;
+    align-self: center;
+
+    font-size: 14px;
+    padding: 9px 12px;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(123,15,20,0.22);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    z-index: 3;
+    white-space: nowrap;
   }
 
-  /* Reihenfolge: FR -> Pill -> SA -> Pill -> SO */
-  .tl{ order: 1; }
-  .b1{ order: 2; }
-  .mr{ order: 3; }
-  .b2{ order: 4; }
-  .bl{ order: 5; }
-
-  /* Dafür muss .plan zum Flex-Container werden */
-  .plan{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  /* Optional: kleine optische “Anker” zur Linie */
+  .plan-item::before{
+    content:"";
+    position:absolute;
+    left: 50%;
+    top: 16px;
+    width: 10px;
+    height: 10px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: rgba(123,15,20,0.55);
   }
-  .between{ align-self: center; }
 
-  /* Kurven auf Mobile aus (sonst sieht’s immer kacke aus) */
-  .curve-desktop{ display: none !important; }
-  .curve-mobile{ display: none !important; }
+  /* Desktop absolute positions egalisieren */
+  .tl,.mr,.bl{ text-align:left; }
+
+  /* Kurven auf Mobile aus */
+  .curve-desktop{ display:none !important; }
+  .curve-mobile{ display:none !important; }
 }
+
 
 
 
