@@ -325,35 +325,67 @@ desktop_css = """
 
 # 3) MOBILE overrides (das ist exakt dein früherer @media block)
 mobile_css = """
-.plan-card{ padding: 18px; }
-.plan-title{ font-size: 34px; }
-.plan-sub{ font-size: 15px; }
+/* -------- MOBILE (<= 560px) -------- */
 
+/* 1) Card + title smaller */
+.plan-card{ padding: 16px; }
+.plan-title{ font-size: 30px; }
+.plan-sub{ font-size: 14px; }
+
+/* 4) make the plan area taller so nothing is cramped */
 .plan{
-  height: 460px;
+  height: 560px;          /* was 460px -> taller */
   border-radius: 16px;
 }
 
+/* 1) overall text smaller */
 .plan-item{
-  max-width: 230px;
+  max-width: 210px;       /* a bit narrower so it fits nicely */
   padding: 8px 10px;
 }
 
-.day{ font-size: 26px; }
-.title{ font-size: 16px; }
-.desc{ font-size: 13px; }
+.day{ font-size: 24px; }
+.title{ font-size: 15px; }
+.desc{ font-size: 12.5px; }
 
-.tl{ left: 18px; top: 18px; }
-.mr{ right: 18px; top: 190px; }
-.bl{ left: 18px; bottom: 18px; }
+/* 2) Friday back into the top-left corner */
+.tl{ left: 16px; top: 16px; }
 
-.between{ font-size: 14px; padding: 8px 10px; }
-.b1{ left: 250px; top: 108px; }
-.b2{ left: 210px; top: 300px; }
+/* 3) Saturday further right + a bit lower so it clears the curve */
+.mr{ right: 10px; top: 250px; text-align: left; }
 
-.curve{ transform: scaleX(0.86) translateX(-60px); transform-origin: center; }
-.curve-path{ stroke-width: 13px; }
+/* bottom-left Sunday a bit lower so it breathes */
+.bl{ left: 16px; bottom: 16px; }
+
+/* 5) Pills: between the days, centered-ish and NOT cut off */
+.between{
+  font-size: 13px;
+  padding: 8px 10px;
+  z-index: 10;
+  max-width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* “kleine Überraschung” between Fri & Sat */
+.b1{ left: 52%; top: 145px; transform: translateX(-50%); }
+
+/* “Desssert” between Sat & Sun (night) */
+.b2{ left: 52%; top: 365px; transform: translateX(-50%); }
+
+/* Curve: keep it similar but ensure it stays inside + not too thick */
+.curve{
+  transform: scaleX(0.92) translateX(-10px);
+  transform-origin: center;
+}
+.curve-path{ stroke-width: 12px; }
+
 """
+
+
+
+
+
 
 plan_css = f"""
 <style>
@@ -370,6 +402,9 @@ plan_css = f"""
 }}
 </style>
 """
+
+
+
 
 components.html(
     plan_html + plan_css,
