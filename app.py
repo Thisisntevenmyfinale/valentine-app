@@ -373,7 +373,7 @@ with col2:
         st.rerun()
 
 # ------------------ BIG HEART CELEBRATION (large hearts + message) ------------------
-def big_hearts_overlay(message="Ich liebe dich über alles."):
+def big_hearts_overlay(message=""):
     hearts_html = []
     # more hearts + mix sizes (some huge)
     for i in range(1, 120):
