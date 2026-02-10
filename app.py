@@ -178,23 +178,22 @@ components.html(
     <div class="between b2">Zeit für uns 😉</div>
 
     <!-- Desktop curve -->
-<svg class="curve curve-desktop" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M 330 145
-           C 720 120, 825 255, 610 325
-           C 410 390, 350 475, 465 540
-           C 585 610, 740 605, 800 560"
-        fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
-</svg>
+    <svg class="curve curve-desktop" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 330 145
+               C 720 120, 825 255, 610 325
+               C 410 390, 350 475, 465 540
+               C 585 610, 740 605, 800 560"
+            fill="none" stroke="#7b0f14" stroke-width="16" stroke-linecap="round"/>
+    </svg>
 
-<!-- Mobile curve -->
-<svg class="curve curve-mobile" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M 520 125
-           C 760 160, 770 265, 610 335
-           C 430 415, 430 500, 575 560
-           C 690 605, 770 590, 820 545"
-        fill="none" stroke="#7b0f14" stroke-width="18" stroke-linecap="round"/>
-</svg>
-
+    <!-- Mobile curve -->
+    <svg class="curve curve-mobile" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 520 125
+               C 760 160, 770 265, 610 335
+               C 430 415, 430 500, 575 560
+               C 690 605, 770 590, 820 545"
+            fill="none" stroke="#7b0f14" stroke-width="18" stroke-linecap="round"/>
+    </svg>
   </div>
 </div>
 
@@ -212,26 +211,25 @@ components.html(
   }
 
   .plan-head{
-  margin-bottom: 14px;
-  text-align: center;
-}
+    margin-bottom: 14px;
+    text-align: center;
+  }
 
-.plan-title{
-  font-size: 44px;
-  font-weight: 900;
-  color: var(--red);
-  letter-spacing: -0.03em;
-  line-height: 1.0;
-  text-align: center;
-}
+  .plan-title{
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--red);
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    text-align: center;
+  }
 
-.plan-sub{
-  margin-top: 8px;
-  font-size: 18px;
-  color: rgba(123,15,20,0.70);
-  text-align: center;
-}
-
+  .plan-sub{
+    margin-top: 8px;
+    font-size: 18px;
+    color: rgba(123,15,20,0.70);
+    text-align: center;
+  }
 
   .plan{
     position: relative;
@@ -240,11 +238,17 @@ components.html(
     background: radial-gradient(circle at 20% 20%, rgba(123,15,20,0.06), transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(123,15,20,0.06), transparent 50%),
                 linear-gradient(135deg, rgba(255,255,255,0.70), rgba(255,255,255,0.35));
-    overflow:hidden;
+    overflow: hidden;
     border: 1px solid rgba(123,15,20,0.12);
   }
 
-  .plan-item{ position:absolute; max-width: 340px; padding: 10px 12px; color: rgba(123,15,20,0.92); }
+  .plan-item{
+    position: absolute;
+    max-width: 340px;
+    padding: 10px 12px;
+    color: rgba(123,15,20,0.92);
+  }
+
   .day{
     font-size: 40px;
     font-weight: 900;
@@ -252,15 +256,25 @@ components.html(
     color: var(--red);
     line-height: 1.0;
   }
-  .title{ font-size: 22px; font-weight: 900; margin-top: 4px; }
-  .desc{ font-size: 16px; margin-top: 4px; color: rgba(123,15,20,0.82); }
+
+  .title{
+    font-size: 22px;
+    font-weight: 900;
+    margin-top: 4px;
+  }
+
+  .desc{
+    font-size: 16px;
+    margin-top: 4px;
+    color: rgba(123,15,20,0.82);
+  }
 
   .tl{ left: 34px; top: 30px; }
-  .mr{ right: 34px; top: 235px; text-align:left; }
+  .mr{ right: 34px; top: 235px; text-align: left; }
   .bl{ left: 34px; bottom: 34px; }
 
   .between{
-    position:absolute;
+    position: absolute;
     font-weight: 900;
     font-size: 18px;
     background: rgba(123,15,20,0.10);
@@ -270,36 +284,49 @@ components.html(
     color: rgba(123,15,20,0.90);
     backdrop-filter: blur(3px);
   }
+
   .b1{ left: 430px; top: 145px; }
   .b2{ left: 395px; top: 405px; }
 
   .curve{
-    position:absolute;
+    position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     opacity: 0.95;
-    pointer-events:none;
+    pointer-events: none;
   }
+
+  /* Desktop shows only desktop curve */
+  .curve-desktop{ display: block; }
+  .curve-mobile{ display: none; }
 
   @media (max-width: 560px){
     .plan-title{ font-size: 38px; }
     .plan{ height: 610px; }
+
     .day{ font-size: 34px; }
     .title{ font-size: 20px; }
     .desc{ font-size: 15px; }
+
     .plan-item{ max-width: 300px; }
     .mr{ left: 22px; right: 22px; top: 280px; }
     .tl{ left: 22px; top: 28px; }
     .bl{ left: 22px; bottom: 34px; }
+
     .b1{ left: 22px; top: 190px; }
     .b2{ left: 22px; top: 455px; }
+
+    /* Mobile shows only mobile curve */
+    .curve-desktop{ display: none; }
+    .curve-mobile{ display: block; }
   }
 </style>
 """,
     height=740,
     scrolling=False,
 )
+
 
 st.write("")
 st.write("")
