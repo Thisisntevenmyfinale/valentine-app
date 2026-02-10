@@ -119,7 +119,7 @@ st.markdown('<div class="sub"></div>', unsafe_allow_html=True)
 st.markdown(
     """
 <div class="card fade-in">
-  <div class="lead">Paulina, ich frage mich das wirklich oft…</div>
+  <div class="lead">Pauli mein Schatz, ich frage mich das wirklich oft…</div>
 
   <p>
     Wie kann ein Mensch das Leben so sehr verändern – nicht laut, nicht auf einmal,
