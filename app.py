@@ -309,7 +309,6 @@ st.markdown(
     """
 <div class="card fade-in center">
   <div style="font-size:22px; font-weight:800; color:rgba(123,15,20,0.78); letter-spacing:-0.01em; line-height:1.2;">
-    Also, one last thing…
   </div>
 
   <div style="font-size:46px; font-weight:900; color:#7b0f14; letter-spacing:-0.03em; line-height:1.05; margin-top:10px;">
