@@ -166,22 +166,32 @@ st.markdown('<div class="sub">I made a little surprise for you.</div>', unsafe_a
 
 # Envelope (closed) until opened
 if not st.session_state.opened:
-    st.markdown("""
-    <div class="envelope-wrap">
-      <div class="envelope">
-        <div class="corner-left">P</div>
-        <div class="heart-mini hl">♥</div>
+    components.html(
+        """
+        <div class="envelope-wrap">
+          <div class="envelope">
+            <div class="corner-left">P</div>
+            <div class="heart-mini hl">♥</div>
 
-        <div class="flap-left"></div>
-        <div class="flap-right"></div>
+            <div class="flap-left"></div>
+            <div class="flap-right"></div>
 
-        <div class="wax"><span>JP</span></div>
+            <div class="wax"><span>PJ</span></div>
 
-        <div class="heart-mini hr">♥</div>
-        <div class="corner-right">J</div>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
+            <div class="heart-mini hr">♥</div>
+            <div class="corner-right">J</div>
+          </div>
+        </div>
+        """,
+        height=410,
+    )
+
+    st.markdown("<div class='center' style='font-size:18px;'>Tap to open the letter 💌</div>", unsafe_allow_html=True)
+    if st.button("Open the letter 💌", use_container_width=True):
+        st.session_state.opened = True
+        hearts_rain(amount=90, speed_ms=55)
+        st.rerun()
+
 
     st.markdown("<div class='center' style='font-size:18px;'>Tap to open the letter 💌</div>", unsafe_allow_html=True)
     if st.button("Open the letter 💌", use_container_width=True):
