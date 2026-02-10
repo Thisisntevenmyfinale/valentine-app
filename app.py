@@ -106,7 +106,7 @@ st.markdown('<div class="sub">Ich habe eine kleine Überraschung für dich.</div
 
 # ------------------ ENVELOPE (components.html so nothing shows as code) ------------------
 def render_envelope_clickable():
-    components.html(
+    st.markdown(
         """
 <div style="display:flex; justify-content:center; margin: 0.8rem 0 0.4rem;">
   <div class="env">
@@ -123,32 +123,23 @@ def render_envelope_clickable():
     <div class="mini brh">♥</div>
     <div class="corner br">J</div>
 
-    <div class="wax" id="wax">
-      <span>P ♥ J</span>
-    </div>
+    <!-- clickable wax seal: normal link on the real page -->
+    <a href="?open=1" class="seal-link" aria-label="Brief öffnen">
+      <div class="wax">
+        <span>P ♥ J</span>
+      </div>
+    </a>
   </div>
 </div>
 
-<div style="text-align:center; font-size:18px; margin-top: 0.3rem;">
+<div class="center" style="font-size:18px; margin-top: 0.3rem;">
   Tippe auf das Wachssiegel, um den Brief zu öffnen 💌
 </div>
 
-<script>
-(function(){
-  const wax = document.getElementById("wax");
-  wax.addEventListener("click", function(){
-    // Change PARENT (Streamlit page) URL so Streamlit reruns with ?open=1
-    try {
-      window.parent.location.search = "open=1";
-    } catch(e) {
-      // fallback: open in same tab
-      window.location.search = "open=1";
-    }
-  });
-})();
-</script>
-
 <style>
+  a.seal-link { text-decoration: none !important; }
+  a.seal-link:visited { color: inherit; }
+
   .env{
     width: min(620px, 92vw);
     aspect-ratio: 4 / 2.65;
@@ -245,9 +236,9 @@ def render_envelope_clickable():
   .brh{ right: 30px; bottom: 54px; }
 </style>
         """,
-        height=520,
-        scrolling=False,
+        unsafe_allow_html=True,
     )
+
 
 # ------------------ FLOW ------------------
 if not st.session_state.opened:
