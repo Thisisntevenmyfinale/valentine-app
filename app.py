@@ -123,7 +123,7 @@ st.markdown(
 
   <p>
     Ich bin jeden Tag dankbar dich in meinem Leben zu haben –
-    für unsere Höhen, für unsere Tiefen, und für alles dazwischen. Du machst mein Leben so unfassbar schön und bedeutungsvoll
+    für unsere Höhen, für unsere Tiefen, und für alles dazwischen. Du machst mein Leben so unfassbar schön und bedeutungsvoll.
   </p>
 
   <p style="margin-bottom:0;">
