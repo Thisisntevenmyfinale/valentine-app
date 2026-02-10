@@ -174,7 +174,7 @@ components.html(
       <div class="desc">den ganzen Morgen 🧸</div>
     </div>
 
-    <!-- labels ON TOP of the curve -->
+    <!-- labels ON TOP of the curve (DESKTOP positions below in CSS) -->
     <div class="between b1">kleine Überraschung 🎁</div>
     <div class="between b2">Zeit für uns 😉</div>
 
@@ -273,25 +273,27 @@ components.html(
   .mr{ right: 34px; top: 235px; text-align: left; }
   .bl{ left: 34px; bottom: 34px; }
 
-  /* pills on top of the curve */
+  /* pills ON TOP of the curve (make them readable even when overlapping the line) */
   .between{
     position: absolute;
     font-weight: 900;
     font-size: 18px;
-    background: rgba(123,15,20,0.10);
-    border: 1px solid rgba(123,15,20,0.18);
     padding: 10px 14px;
     border-radius: 999px;
-    color: rgba(123,15,20,0.90);
-    backdrop-filter: blur(3px);
-    z-index: 6;
-    box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    color: rgba(123,15,20,0.92);
     white-space: nowrap;
+    z-index: 8;
+
+    /* key: white-ish pill so it sits cleanly on top of the curve */
+    background: rgba(255,255,255,0.86);
+    border: 1px solid rgba(123,15,20,0.22);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    backdrop-filter: blur(4px);
   }
 
-  /* Desktop positions (moved right + b2 higher) */
-  .b1{ left: 585px; top: 135px; }
-  .b2{ left: 515px; top: 350px; }
+  /* ✅ Desktop: move BOTH pills left and place clearly “on the curve” */
+  .b1{ left: 510px; top: 118px; }  /* kleine Überraschung: further left, slightly higher */
+  .b2{ left: 455px; top: 330px; }  /* Zeit für uns: clearly between Sat & Sun */
 
   .curve{
     position: absolute;
@@ -321,9 +323,9 @@ components.html(
     .tl{ left: 22px; top: 28px; }
     .bl{ left: 22px; bottom: 34px; }
 
-    /* Mobile pills: still between Sat & Sun, but readable */
+    /* ✅ Mobile: keep them readable & positioned between the sections */
     .b1{ left: 22px; top: 190px; }
-    .b2{ left: 22px; top: 420px; }
+    .b2{ left: 22px; top: 415px; }
 
     /* Mobile shows only mobile curve */
     .curve-desktop{ display: none; }
@@ -334,6 +336,7 @@ components.html(
     height=740,
     scrolling=False,
 )
+
 
 
 
